@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Workflow &#8212; FlickerPrint  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'details/workflow';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Image Requirements" href="taking_images.html" />
+    <link rel="prev" title="Worked Example" href="../user_guide/worked_example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">FlickerPrint  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="details.html">
+    Details
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../source_code/module_source_code.html">
+    Module Source Code
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../find_out_more/papers.html">
+    Find Out More
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/FlickerPrint/FlickerPrint" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="details.html">
+    Details
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../source_code/module_source_code.html">
+    Module Source Code
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../find_out_more/papers.html">
+    Find Out More
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/FlickerPrint/FlickerPrint" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/worked_example.html">Worked Example</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taking_images.html">Image Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="directory_structure.html">Structure of the Experiment Directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_storage.html">Data Storage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Source Code</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../source_code/module_source_code.html">Module Source Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/manager.html">Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/bayesian.html">Bayesian Optimisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/process_image.html">Process Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/extract_physical_values.html">Extract Physical Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/frame_gen.html">Frame Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/granule_detection.html">Granule Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/boundary_extraction.html">Boundary Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/spectrum_fitting.html">Spectrum Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/plotting.html">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/statistics.html">Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../source_code/plot_tools.html">Plot Tools</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Find Out more</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../find_out_more/papers.html">Find Out More</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_guide/user_guide.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Workflow</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="workflow">
+<span id="id1"></span><h1>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h1>
+<p>This page covers the setps of the analysis in more detail, including details of the workflow and the files created.
+The automatic workflow can be called using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>run<span class="w"> </span><span class="o">[</span>-c<span class="w"> </span>CORES<span class="o">]</span>
+</pre></div>
+</div>
+<p>and is the easiest way to use FlickerPrint.
+However, the details on this page may be useful if you wish to customise the workflow.
+For detailed information on the funtions called during each step, see the <a class="reference internal" href="../source_code/module_source_code.html#module-source-code"><span class="std std-ref">Module Source Code</span></a> section.</p>
+<p>There are broadly five main steps to using FlickerPrint.
+These are:</p>
+<ol class="arabic simple">
+<li><p>Creating the experiment directory</p></li>
+<li><p>Setting parameters in the config file</p></li>
+<li><p>Processing the Microscope Images</p></li>
+<li><p>Fitting the flikcer spectrum</p></li>
+<li><p>Analysis of the resulting data (optionally using FlickerPrint or your favourite software)</p></li>
+</ol>
+<p>Here, we go through each.</p>
+<p>Before you use FlickerPrint, you will also need to collect suitable microscopy images.
+Details on how to do this can be found in <a class="reference internal" href="taking_images.html#image-requirements"><span class="std std-ref">Image Requirements</span></a>.</p>
+<section id="creating-the-experiment-directory">
+<h2>Creating the Experiment Directory<a class="headerlink" href="#creating-the-experiment-directory" title="Link to this heading">#</a></h2>
+<p>All alaysis using FlickerPrint is completed inside of an <em>experiment directory</em>.
+This is the save location for all intermediate and final datafiles, as well as figures.
+Optionally, microscope images can also be stored in this directory.</p>
+<p>Experiment directories can be created by calling</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>create-project<span class="w"> </span>PROJECT_NAME
+</pre></div>
+</div>
+<p>which will create an experiment directoy called <code class="docutils literal notranslate"><span class="pre">PROJECT_NAME</span></code> in the current directory.
+For details on the contents of thw experiment directory, please see <a class="reference internal" href="directory_structure.html#directory-structure"><span class="std std-ref">Structure of the Experiment Directory</span></a>.</p>
+</section>
+<section id="setting-parameters-in-the-config-file">
+<h2>Setting Parameters in the Config File<a class="headerlink" href="#setting-parameters-in-the-config-file" title="Link to this heading">#</a></h2>
+<p>The <a class="reference internal" href="configuration.html#configuration-values"><span class="std std-ref">configuration file</span></a> stores all of the settings for a particular experiment.</p>
+<p>The imaging parameters are also partiuclarly important as they control which condensates are detected (though generally, they do not affect the determined boundary; see the <a class="reference external" href="https://doi.org/10.1101/2025.03.24.645013">FlickerPrint release paper</a> for details).</p>
+<p>For consistency reasons, similar experiments should use the same imaging parameters.
+However for new experiments, FlickerPrint contains a Bayesian Inference tool to automatically determine the best imaging parameters to use by maximising the number of condensates found, whilst minimising the number that will fail the condensate filters.
+This can be called using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>parameter-optimisation
+</pre></div>
+</div>
+<p>which selects 2 frames from up to 12 videos in order to determine the optimal imaging parameters.
+The parameters are written into the config file and the old parameters in the config file are written to <code class="docutils literal notranslate"><span class="pre">old_parameter.txt</span></code>.</p>
+</section>
+<section id="image-processing">
+<span id="id2"></span><h2>Image Processing<a class="headerlink" href="#image-processing" title="Link to this heading">#</a></h2>
+<p>The first step of the main analysis is to locate the objects of interest within each frame and determine their bounaries.
+A Fourier transform is then used to extract the fluctuation modes of the boundaries.
+This is the first stage of the <a class="reference internal" href="../user_guide/getting_started.html#automatic-workflow"><span class="std std-ref">Automatic workflow</span></a>; FlickerPrint will check the <a class="reference internal" href="configuration.html#configuration-values"><span class="std std-ref">configuration file</span></a> and run the analysis on all microscope images in the specified <code class="docutils literal notranslate"><span class="pre">image_directory</span></code> which match the <code class="docutils literal notranslate"><span class="pre">image_regex</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">image_directory</span></code> can either be a single microscope image or a directory of images.</p>
+</div>
+<p>The image processing step can be paralellised over multiple cores up to a maximum of one core per microscopy file.
+This limitation is due to the Java virtual machine which is used to open the images.</p>
+<p>For each microscope file a corresponding <a class="reference internal" href="data_storage.html#fourier-h5"><span class="std std-ref">fourier.h5</span></a> file containing the location of the objects of interest and their experimental spectra is created in the <code class="docutils literal notranslate"><span class="pre">fourier</span></code> directory.</p>
+<p>Optional validation images can also be created to show the locations of the granules detected within the image and the location of their detected boundaries; this is controlled using the <code class="docutils literal notranslate"><span class="pre">granule_images</span></code> parameter in the configuration file.
+To save space, only data from every 100 <sup>th</sup> frame is plotted.</p>
+<p>The image processing step can be manually run on files by calling</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>process-image<span class="w"> </span><span class="o">[</span>-i<span class="w"> </span>INPUT_IMAGE<span class="o">]</span><span class="w"> </span><span class="o">[</span>-o<span class="w"> </span>OUTPUT_DIR<span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="w"> </span>CORES<span class="o">]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The above steps are managed by <a class="reference internal" href="../source_code/process_image.html#process-image"><span class="std std-ref">Process Image</span></a> including saving the results to <a class="reference internal" href="data_storage.html#fourier-h5"><span class="std std-ref">fourier.h5</span></a> and the creation of image detection figures.</p>
+</div>
+<p>A break down of the steps used is covered in the following:</p>
+<section id="opening-microscopy-files">
+<h3>Opening Microscopy Files<a class="headerlink" href="#opening-microscopy-files" title="Link to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">FrameGen</span></code> object returns the frames, and metadata, of the microscope file one-by-one.</p>
+<p><a class="reference internal" href="../source_code/frame_gen.html#frame-gen"><span class="std std-ref">Frame Gen Details</span></a></p>
+</section>
+<section id="granule-detection">
+<h3>Granule Detection<a class="headerlink" href="#granule-detection" title="Link to this heading">#</a></h3>
+<p>We use the Difference of Gaussians method which is a blob-detection algortihm to determine the location of objects of interest in the image.
+A flood fill algorithm then returns athe approximate extent of the objects so that they can be filtered and their boundaries determined.</p>
+<p><a class="reference internal" href="../source_code/granule_detection.html#granule-detection"><span class="std std-ref">Granule Detection Details</span></a></p>
+</section>
+<section id="boundary-drawing">
+<h3>Boundary Drawing<a class="headerlink" href="#boundary-drawing" title="Link to this heading">#</a></h3>
+<p>There are two methods which can be used to determine the boundary of the objects of interest, depending on whether the objects appear in the microscoopy images as filled ‘blobs’ or as outlines:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gradient</span></code> - Best for filled objects such as condensates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intensity</span></code> - Best for outlines such as vesicles</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">gradient</span></code> method allows for the boundary of a filled ‘blob’ to be determined to sub-pixel (typically 1/15 of a pixel) precision.
+The <code class="docutils literal notranslate"><span class="pre">inensisty</span></code> method allows the boundary to be determined as a contour of maximum intensity within an image.
+Therefore, it is best used with outline images (and in particular vesicles).</p>
+<p>The boundary is then Fourier transformed to extract the fluctuation modes.</p>
+<p>This step also handles linking the objects of interest between frames.</p>
+<p><a class="reference internal" href="../source_code/boundary_extraction.html#boundary-extraction"><span class="std std-ref">Boundary Extraction Details</span></a></p>
+</section>
+</section>
+<section id="spectrum-fitting">
+<h2>Spectrum Fitting<a class="headerlink" href="#spectrum-fitting" title="Link to this heading">#</a></h2>
+<p>In the second step of the main analysis, once the experimental spectrum has been measured, we fit a theoretical spectrum to find the best fit values of interfacial tension <span class="math notranslate nohighlight">\(\sigma\)</span> and bending rigidity <span class="math notranslate nohighlight">\(\kappa\)</span>.
+The theoretical spectrum for the time average of the square of the <span class="math notranslate nohighlight">\(q\)</span><sup>th</sup> Fourier Component, <span class="math notranslate nohighlight">\(\left\langle \left| \mathcal{v}_q\right|^2\right\rangle\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\left\langle \left| \mathcal{v}_q\right|^2\right\rangle=\frac{k_BT}{\kappa} \sum_{l=q}^{l_\max} \frac{N_{l q}^2 P_{l q}^2(0)}{(l+2)(l-1)[l(l+1)+\bar{\sigma}]},\]</div>
+<p>where <span class="math notranslate nohighlight">\(k_BT\)</span> is the thermal energy of the system and <span class="math notranslate nohighlight">\(N_{lq}P_{lq}(0)\)</span> is the value of the normalised Legendre polynomial at the equator.
+A full derivation of this model can be found in the Supplementary Material of <a class="reference external" href="https://doi.org/10.1126/sciadv.adg0432">our paper</a>.</p>
+<p>We use a parameter grid search, followed by a least squares fit with a custom minimiser given by</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon_{log}=\sum_q\left|\log _{10}\left[\frac{\left|F_{q, \text { theo}}\right|^2}{\left|F_{q, \text { exp}}\right|^2}\right]\right|\]</div>
+<p>to ensure that the fit of each Fourier mode is equally weighted even when their amplitudes vary by several orders of magnitude.</p>
+<p>As with the image processing step, this can be run as part of the <a class="reference internal" href="../user_guide/getting_started.html#automatic-workflow"><span class="std std-ref">automated workflow</span></a>.
+However, it can also be called manaually using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>spectrum-fitting<span class="w"> </span>WORKING_DIR<span class="w"> </span><span class="o">[</span>-c<span class="w"> </span>CORES<span class="o">]</span>
+</pre></div>
+</div>
+<p>You can set <code class="docutils literal notranslate"><span class="pre">WORKING_DIR</span></code> to <code class="docutils literal notranslate"><span class="pre">.</span></code> if you are currently in the eperiment directory.</p>
+<p>This step takes in the <a class="reference internal" href="data_storage.html#fourier-h5"><span class="std std-ref">fourier.h5</span></a> files created in the image processing step for each microscope image and returns a single <a class="reference internal" href="data_storage.html#aggregate-fittings-h5"><span class="std std-ref">aggregate_fittings.h5</span></a> file.</p>
+<p>Since the fitting of spectra for several thousand condensates can be quite computationally expensive, this process can be split across multiple cores (up to a maximum of one per microscope file) using the <code class="docutils literal notranslate"><span class="pre">-c</span></code> flag.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Individual spectrum fitting is handled <a class="reference internal" href="../source_code/spectrum_fitting.html#spectrum-fitting"><span class="std std-ref">here</span></a> and is handled by a <a class="reference internal" href="../source_code/extract_physical_values.html#extract-physical-values"><span class="std std-ref">manager</span></a>.</p>
+</div>
+</section>
+<section id="analysing-the-results">
+<h2>Analysing the Results<a class="headerlink" href="#analysing-the-results" title="Link to this heading">#</a></h2>
+<p>The outputs of the main FlickerPrint analysis are stored in the <a class="reference internal" href="data_storage.html#aggregate-fittings-h5"><span class="std std-ref">aggregate_fittings.h5</span></a> file in the experiment directory.
+All values are stored as standard c-types so can be read by your favourite data analysis software (e.g. your own Python scripts).</p>
+<p>However, FlickerPrint also provides two methods for filtering and analysing these datasets; one with a Graphical User Interface and one based on the command-line.
+Both allow for datasets to be compared based on the experiment name.</p>
+<section id="graphical-analysis-tool">
+<h3>Graphical Analysis Tool<a class="headerlink" href="#graphical-analysis-tool" title="Link to this heading">#</a></h3>
+<p>You can launch the graphical application by calling</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>view-output
+</pre></div>
+</div>
+<p>from the terminal which will open a web page to show the graphical user interface.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is important that you do not close the terminal window that you started running the analysis app from as this is where the app is actually running on your computer; the web page just displays the output and allows you to interact with the contents.</p>
+</div>
+<p>From this web page, you can open your aggregate_fittings files, filter the data and produce plots to show the distributions of the measured parameters, which can then be saved for later use.</p>
+</section>
+<section id="command-line-analysis-tool">
+<h3>Command-line Analysis Tool<a class="headerlink" href="#command-line-analysis-tool" title="Link to this heading">#</a></h3>
+<p>The command-line tool works in much the same way as the graphical tool.
+It produces plots to show the distribution of each measured parameter, as well as 2D histograms to allow for comparison between parameters.
+These plots are saved into the <code class="docutils literal notranslate"><span class="pre">figs</span></code> folder of the experiment directory.
+The data are filtered according to the following fliters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fitting_error</span></code> <span class="math notranslate nohighlight">\(&lt; 0.5\)</span> - Ensures that only condensates where the theoretical model is a good fit to the experimental spectrum are included.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sigma</span></code> <span class="math notranslate nohighlight">\(&gt; 1e-10\)</span> - Some condensates have spuriously low interfacial tensions so are flitered out.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pass_rate</span></code> <span class="math notranslate nohighlight">\(&gt; 0.6\)</span> - Ensures that only condensates which pass the internal flitering (e.g. for having a valid boundary) in at least 60% of the frames they are in are counted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fitting_difference</span></code> <span class="math notranslate nohighlight">\(&gt; 0.03\)</span> - Only include condensates where bending rigidity makes a contribution to the flicker spectrum.</p></li>
+</ul>
+<p>The command-line analysis tool can be run by calling</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>view-output-terminal
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../user_guide/worked_example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Worked Example</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="taking_images.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Image Requirements</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-experiment-directory">Creating the Experiment Directory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-parameters-in-the-config-file">Setting Parameters in the Config File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-processing">Image Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-microscopy-files">Opening Microscopy Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#granule-detection">Granule Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-drawing">Boundary Drawing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-fitting">Spectrum Fitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysing-the-results">Analysing the Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-analysis-tool">Graphical Analysis Tool</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-analysis-tool">Command-line Analysis Tool</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/details/workflow.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright FlickerPrint 2020-2025.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

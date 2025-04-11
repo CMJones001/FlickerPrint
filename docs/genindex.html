@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; FlickerPrint  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">FlickerPrint  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide/user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="details/details.html">
+    Details
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="source_code/module_source_code.html">
+    Module Source Code
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="find_out_more/papers.html">
+    Find Out More
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/FlickerPrint/FlickerPrint" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide/user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="details/details.html">
+    Details
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="source_code/module_source_code.html">
+    Module Source Code
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="find_out_more/papers.html">
+    Find Out More
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/FlickerPrint/FlickerPrint" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction.angle_sweep">angle_sweep() (flickerprint.common.boundary_extraction.BoundaryExtraction method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.annotate_axis">annotate_axis() (in module flickerprint.tools.plot_tools)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.bayesOptFunction_maxSG_multiImages">bayesOptFunction_maxSG_multiImages() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.bayesOptFunction_minBlobs_multiImages">bayesOptFunction_minBlobs_multiImages() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction">BoundaryExtraction (class in flickerprint.common.boundary_extraction)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.check_dir_structure">check_dir_structure() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.collect_fourier_terms">collect_fourier_terms() (in module flickerprint.common.boundary_extraction)</a>
+</li>
+      <li><a href="source_code/process_image.html#flickerprint.workflow.process_image.consolidate_fourier_terms">consolidate_fourier_terms() (in module flickerprint.workflow.process_image)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.create_axes">create_axes() (in module flickerprint.tools.plot_tools)</a>
+</li>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.create_figure_directory">create_figure_directory() (in module flickerprint.tools.plot_tools)</a>
+</li>
+      <li><a href="source_code/statistics.html#flickerprint.analysis.statistics.create_stats_csv">create_stats_csv() (in module flickerprint.analysis.statistics)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.despine_axis">despine_axis() (in module flickerprint.tools.plot_tools)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/manager.html#flickerprint.workflow.manager.dispatch_args">dispatch_args() (in module flickerprint.workflow.manager)</a>
+</li>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.DoG">DoG() (in module flickerprint.common.granule_locator)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.extractParametersFromInput">extractParametersFromInput() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes.findGranules">findGranules() (flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes method)</a>
+</li>
+      <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.FittingBendingRigidityOnlyLeastSquares">FittingBendingRigidityOnlyLeastSquares (class in flickerprint.fluctuation.spectra)</a>
+</li>
+      <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.FittingLBFGS">FittingLBFGS (class in flickerprint.fluctuation.spectra)</a>
+</li>
+      <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.FittingLeastSquares">FittingLeastSquares (class in flickerprint.fluctuation.spectra)</a>
+</li>
+      <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.FittingSurfaceTensionOnlyLeastSquares">FittingSurfaceTensionOnlyLeastSquares (class in flickerprint.fluctuation.spectra)</a>
+</li>
+      <li>
+    flickerprint.analysis.plotting
+
+      <ul>
+        <li><a href="source_code/plotting.html#module-flickerprint.analysis.plotting">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.analysis.statistics
+
+      <ul>
+        <li><a href="source_code/statistics.html#module-flickerprint.analysis.statistics">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.common.boundary_extraction
+
+      <ul>
+        <li><a href="source_code/boundary_extraction.html#module-flickerprint.common.boundary_extraction">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.common.frame_gen
+
+      <ul>
+        <li><a href="source_code/frame_gen.html#module-flickerprint.common.frame_gen">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.common.granule_locator
+
+      <ul>
+        <li><a href="source_code/granule_detection.html#module-flickerprint.common.granule_locator">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    flickerprint.fluctuation.spectra
+
+      <ul>
+        <li><a href="source_code/spectrum_fitting.html#module-flickerprint.fluctuation.spectra">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.tools.plot_tools
+
+      <ul>
+        <li><a href="source_code/plot_tools.html#module-flickerprint.tools.plot_tools">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.workflow.bayesian_optimisation
+
+      <ul>
+        <li><a href="source_code/bayesian.html#module-flickerprint.workflow.bayesian_optimisation">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.workflow.extract_physical_values
+
+      <ul>
+        <li><a href="source_code/extract_physical_values.html#module-flickerprint.workflow.extract_physical_values">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.workflow.manager
+
+      <ul>
+        <li><a href="source_code/manager.html#module-flickerprint.workflow.manager">module</a>
+</li>
+      </ul></li>
+      <li>
+    flickerprint.workflow.process_image
+
+      <ul>
+        <li><a href="source_code/process_image.html#module-flickerprint.workflow.process_image">module</a>
+</li>
+      </ul></li>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes.flood_granules">flood_granules() (flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes method)</a>
+</li>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.force_integer_ticks">force_integer_ticks() (in module flickerprint.tools.plot_tools)</a>
+</li>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.format_si">format_si() (in module flickerprint.tools.plot_tools)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/frame_gen.html#flickerprint.common.frame_gen.gen_opener">gen_opener() (in module flickerprint.common.frame_gen)</a>
+</li>
+      <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.FittingBendingRigidityOnlyLeastSquares.get_best_fit">get_best_fit() (flickerprint.fluctuation.spectra.FittingBendingRigidityOnlyLeastSquares method)</a>
+
+      <ul>
+        <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.FittingLeastSquares.get_best_fit">(flickerprint.fluctuation.spectra.FittingLeastSquares method)</a>
+</li>
+        <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.FittingSurfaceTensionOnlyLeastSquares.get_best_fit">(flickerprint.fluctuation.spectra.FittingSurfaceTensionOnlyLeastSquares method)</a>
+</li>
+      </ul></li>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction.get_fourier_terms">get_fourier_terms() (flickerprint.common.boundary_extraction.BoundaryExtraction static method)</a>
+</li>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.get_image_pathes">get_image_pathes() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.get_random_indicies">get_random_indicies() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.get_sorted_results">get_sorted_results() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+      <li><a href="source_code/granule_detection.html#id0">Granule (class in flickerprint.common.granule_locator)</a>
+</li>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.Granule">Granule() (in module flickerprint.common.granule_locator)</a>
+</li>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleDetector">GranuleDetector (class in flickerprint.common.granule_locator)</a>
+</li>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes">GranuleDetectorBayes (class in flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleNotFoundError">GranuleNotFoundError</a>
+</li>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleDetector.granules">granules() (flickerprint.common.granule_locator.GranuleDetector method)</a>
+
+      <ul>
+        <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes.granules">(flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.hide_axis_lables">hide_axis_lables() (in module flickerprint.tools.plot_tools)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plotting.html#flickerprint.analysis.plotting.histogram2D">histogram2D() (in module flickerprint.analysis.plotting)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.image_comp">image_comp() (in module flickerprint.tools.plot_tools)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleDetector.labelGranules">labelGranules() (flickerprint.common.granule_locator.GranuleDetector method)</a>
+
+      <ul>
+        <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes.labelGranules">(flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleDetector.labelled_granules">labelled_granules (flickerprint.common.granule_locator.GranuleDetector attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.main">main() (in module flickerprint.workflow.bayesian_optimisation)</a>
+
+      <ul>
+        <li><a href="source_code/extract_physical_values.html#flickerprint.workflow.extract_physical_values.main">(in module flickerprint.workflow.extract_physical_values)</a>
+</li>
+        <li><a href="source_code/manager.html#flickerprint.workflow.manager.main">(in module flickerprint.workflow.manager)</a>
+</li>
+        <li><a href="source_code/process_image.html#flickerprint.workflow.process_image.main">(in module flickerprint.workflow.process_image)</a>
+</li>
+      </ul></li>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleDetector.mask">mask (flickerprint.common.granule_locator.GranuleDetector attribute)</a>
+</li>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction.mean_radius_pixels">mean_radius_pixels (flickerprint.common.boundary_extraction.BoundaryExtraction property)</a>
+</li>
+      <li><a href="source_code/frame_gen.html#flickerprint.common.frame_gen.MicroscopeFrame">MicroscopeFrame (class in flickerprint.common.frame_gen)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="source_code/plotting.html#module-flickerprint.analysis.plotting">flickerprint.analysis.plotting</a>
+</li>
+        <li><a href="source_code/statistics.html#module-flickerprint.analysis.statistics">flickerprint.analysis.statistics</a>
+</li>
+        <li><a href="source_code/boundary_extraction.html#module-flickerprint.common.boundary_extraction">flickerprint.common.boundary_extraction</a>
+</li>
+        <li><a href="source_code/frame_gen.html#module-flickerprint.common.frame_gen">flickerprint.common.frame_gen</a>
+</li>
+        <li><a href="source_code/granule_detection.html#module-flickerprint.common.granule_locator">flickerprint.common.granule_locator</a>
+</li>
+        <li><a href="source_code/spectrum_fitting.html#module-flickerprint.fluctuation.spectra">flickerprint.fluctuation.spectra</a>
+</li>
+        <li><a href="source_code/plot_tools.html#module-flickerprint.tools.plot_tools">flickerprint.tools.plot_tools</a>
+</li>
+        <li><a href="source_code/bayesian.html#module-flickerprint.workflow.bayesian_optimisation">flickerprint.workflow.bayesian_optimisation</a>
+</li>
+        <li><a href="source_code/extract_physical_values.html#module-flickerprint.workflow.extract_physical_values">flickerprint.workflow.extract_physical_values</a>
+</li>
+        <li><a href="source_code/manager.html#module-flickerprint.workflow.manager">flickerprint.workflow.manager</a>
+</li>
+        <li><a href="source_code/process_image.html#module-flickerprint.workflow.process_image">flickerprint.workflow.process_image</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction.n_angles">n_angles (flickerprint.common.boundary_extraction.BoundaryExtraction attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.numerator">numerator() (in module flickerprint.fluctuation.spectra)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.Objects">Objects() (in module flickerprint.common.granule_locator)</a>
+</li>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.optimisationMaxSG">optimisationMaxSG() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.optimisationReduceInvalidSGs">optimisationReduceInvalidSGs() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+      <li><a href="source_code/plotting.html#flickerprint.analysis.plotting.overlap_hist">overlap_hist() (in module flickerprint.analysis.plotting)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plotting.html#flickerprint.analysis.plotting.pair_plot">pair_plot() (in module flickerprint.analysis.plotting)</a>
+</li>
+      <li><a href="source_code/manager.html#flickerprint.workflow.manager.parse_arguments">parse_arguments() (in module flickerprint.workflow.manager)</a>
+</li>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction.plot">plot() (flickerprint.common.boundary_extraction.BoundaryExtraction method)</a>
+
+      <ul>
+        <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleDetector.plot">(flickerprint.common.granule_locator.GranuleDetector method)</a>
+</li>
+        <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes.plot">(flickerprint.workflow.bayesian_optimisation.GranuleDetectorBayes method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.polar2cart">polar2cart() (in module flickerprint.tools.plot_tools)</a>
+</li>
+      <li><a href="source_code/statistics.html#flickerprint.analysis.statistics.population_statistics">population_statistics() (in module flickerprint.analysis.statistics)</a>
+</li>
+      <li><a href="source_code/extract_physical_values.html#flickerprint.workflow.extract_physical_values.process_fourier_file">process_fourier_file() (in module flickerprint.workflow.extract_physical_values)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction.radii">radii (flickerprint.common.boundary_extraction.BoundaryExtraction attribute)</a>
+</li>
+      <li><a href="source_code/plotting.html#flickerprint.analysis.plotting.read_data">read_data() (in module flickerprint.analysis.plotting)</a>
+</li>
+      <li><a href="source_code/spectrum_fitting.html#flickerprint.fluctuation.spectra.Result">Result (class in flickerprint.fluctuation.spectra)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/manager.html#flickerprint.workflow.manager.run">run() (in module flickerprint.workflow.manager)</a>
+</li>
+      <li><a href="source_code/manager.html#flickerprint.workflow.manager.run_gui">run_gui() (in module flickerprint.workflow.manager)</a>
+</li>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.run_parameter_search">run_parameter_search() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.save">save() (in module flickerprint.tools.plot_tools)</a>
+</li>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.save_figure_and_trim">save_figure_and_trim() (in module flickerprint.tools.plot_tools)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/plot_tools.html#flickerprint.tools.plot_tools.set_labels">set_labels() (in module flickerprint.tools.plot_tools)</a>
+</li>
+      <li><a href="source_code/frame_gen.html#flickerprint.common.frame_gen.MicroscopeFrame.summaryRow">summaryRow (flickerprint.common.frame_gen.MicroscopeFrame property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.thresholdDetector">thresholdDetector() (in module flickerprint.common.granule_locator)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/bayesian.html#flickerprint.workflow.bayesian_optimisation.update_config_file">update_config_file() (in module flickerprint.workflow.bayesian_optimisation)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/boundary_extraction.html#flickerprint.common.boundary_extraction.BoundaryExtraction.validate_boundary">validate_boundary() (flickerprint.common.boundary_extraction.BoundaryExtraction method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/granule_detection.html#flickerprint.common.granule_locator.GranuleNotFoundError.with_traceback">with_traceback() (flickerprint.common.granule_locator.GranuleNotFoundError method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source_code/process_image.html#flickerprint.workflow.process_image.write_hdf">write_hdf() (in module flickerprint.workflow.process_image)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright FlickerPrint 2020-2025.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Granule Detection &#8212; FlickerPrint  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source_code/granule_detection';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Boundary Extraction" href="boundary_extraction.html" />
+    <link rel="prev" title="Frame Generation" href="frame_gen.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">FlickerPrint  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../details/details.html">
+    Details
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="module_source_code.html">
+    Module Source Code
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../find_out_more/papers.html">
+    Find Out More
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/FlickerPrint/FlickerPrint" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../details/details.html">
+    Details
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="module_source_code.html">
+    Module Source Code
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../find_out_more/papers.html">
+    Find Out More
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/FlickerPrint/FlickerPrint" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/worked_example.html">Worked Example</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../details/workflow.html">Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../details/taking_images.html">Image Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../details/directory_structure.html">Structure of the Experiment Directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../details/configuration.html">Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../details/data_storage.html">Data Storage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Source Code</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="module_source_code.html">Module Source Code</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manager.html">Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesian.html">Bayesian Optimisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="process_image.html">Process Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extract_physical_values.html">Extract Physical Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frame_gen.html">Frame Generation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Granule Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_extraction.html">Boundary Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spectrum_fitting.html">Spectrum Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.html">Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_tools.html">Plot Tools</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Find Out more</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../find_out_more/papers.html">Find Out More</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_guide/user_guide.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="module_source_code.html" class="nav-link">Module Source Code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Granule Detection</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="granule-detection">
+<span id="id1"></span><h1>Granule Detection<a class="headerlink" href="#granule-detection" title="Link to this heading">#</a></h1>
+<p>The first step is to locate the granule within the frame. As these are from microscopy images, we assume that the background of the image will be dark and the granules bright regions.</p>
+<p>As the granules are much typically much brighter than the cytoplasm within the cell, a simple thresholding method works will in most cases. However, particularly in the case of transfected cells, the cytoplasm of one cell may be brighter than the granules in another cell, which makes threshold based detection of all the granules impossible.</p>
+<p>Therefore, by default this uses the Difference of Gaussian (DoG) method, with the core implementation is provided by <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.blob_dog">scikit image</a>.
+This is a much more robust method to detect bright granules among a noisy background.</p>
+<p>We also provide the Laplacian of Gaussian method, this avoids some of the approximations made in the DoG method and so is better at detecting smaller granules (10s of pixels total area). However, the runtime scales poorly when detecting larger granules and the smaller granules detected by the LoG method are too small for accurate fluctuation analysis, so DoG is typically for that case.</p>
+<p>Both the DoG and LoG methods require an estimate of the expected of the granule size to be detected; if the microscope file contains <code class="docutils literal notranslate"><span class="pre">PhysicalSize</span></code> of a pixel we choose sensible defaults for stress granules</p>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h2>
+<p>This provides a <code class="docutils literal notranslate"><span class="pre">GranuleDetector_DoG</span></code> class that takes a <code class="docutils literal notranslate"><span class="pre">Frame</span></code> object, <code class="docutils literal notranslate"><span class="pre">label_granules</span></code> detects the granules within the image and creates a <code class="docutils literal notranslate"><span class="pre">mask</span></code> array with 0 for the background and 1 for the granules foreground, <code class="docutils literal notranslate"><span class="pre">labelled_granules</span></code> is an array with the same shape of the input image, with a unique image for each granule.
+Granules in contact from the boundary are removed.</p>
+</section>
+<section id="module-flickerprint.common.granule_locator">
+<span id="source"></span><h2>Source<a class="headerlink" href="#module-flickerprint.common.granule_locator" title="Link to this heading">#</a></h2>
+<p>Locate the granules within the <code class="docutils literal notranslate"><span class="pre">MicroscopeFrame</span></code>.</p>
+<section id="outline">
+<h3>Outline<a class="headerlink" href="#outline" title="Link to this heading">#</a></h3>
+<p>We provide two methods to locate the granule within the Frame.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.DoG">
+<span class="sig-prename descclassname"><span class="pre">flickerprint.common.granule_locator.</span></span><span class="sig-name descname"><span class="pre">DoG</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.DoG" title="Link to this definition">#</a></dt>
+<dd><p>Difference of Gaussian - this</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.Objects">
+<span class="sig-prename descclassname"><span class="pre">flickerprint.common.granule_locator.</span></span><span class="sig-name descname"><span class="pre">Objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.Objects" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">-------</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.Granule">
+<span class="sig-prename descclassname"><span class="pre">flickerprint.common.granule_locator.</span></span><span class="sig-name descname"><span class="pre">Granule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.Granule" title="Link to this definition">#</a></dt>
+<dd><p>An image of the granule and the surrounding area, along with the location and other
+metadata, including a rough estimate of the granule boundary.</p>
+</dd></dl>
+
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flickerprint.common.granule_locator.</span></span><span class="sig-name descname"><span class="pre">Granule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd><p>Container for a crop of the the microscope image containing the granule.</p>
+<p>Extends the crop from the granule detection by <code class="docutils literal notranslate"><span class="pre">padding</span></code> pixels to help with
+boundary drawing. This retains the metadata from the microscope frame.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleDetector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flickerprint.common.granule_locator.</span></span><span class="sig-name descname"><span class="pre">GranuleDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="frame_gen.html#flickerprint.common.frame_gen.MicroscopeFrame" title="flickerprint.common.frame_gen.MicroscopeFrame"><span class="pre">MicroscopeFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleDetector" title="Link to this definition">#</a></dt>
+<dd><p>Detector for the granules in the image.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleDetector.mask">
+<span class="sig-name descname"><span class="pre">mask</span></span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleDetector.mask" title="Link to this definition">#</a></dt>
+<dd><p>A binary image, with pixels belonging to a granules 1, and background 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, dtype=bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleDetector.labelled_granules">
+<span class="sig-name descname"><span class="pre">labelled_granules</span></span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleDetector.labelled_granules" title="Link to this definition">#</a></dt>
+<dd><p>An image with each the extent of granule given as an unique integer, 0
+corresponds to the background.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, dtype=int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Frame</strong> (<a class="reference internal" href="frame_gen.html#flickerprint.common.frame_gen.MicroscopeFrame" title="flickerprint.common.frame_gen.MicroscopeFrame"><em>MicroscopeFrame</em></a>) – Current MicroscopeFrame</p></li>
+<li><p><strong>min_size</strong> (<em>float = 0.3</em>) – Smallest size of granule to detect. If a pixel size is provided then this will
+be assumed to be in μm, otherwise this will be in pixels.</p></li>
+<li><p><strong>max_size</strong> (<em>float = 3.0</em>) – Largest granule to detect. See above.</p></li>
+<li><p><strong>processed_image</strong> (<em>the processed version</em><em> of </em><em>the image to be used for granule detection</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">granules:</span></span></dt>
+<dd><p>Iterator of <code class="docutils literal notranslate"><span class="pre">Granule</span></code> objects</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labelGranules:</span></span></dt>
+<dd><p>Create the <code class="docutils literal notranslate"><span class="pre">labelled_granules</span></code> array from the starting image.
+This should perform all steps required to generate <code class="docutils literal notranslate"><span class="pre">Granules</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">plot:</span></span></dt>
+<dd><p>Show the detection of granules within the frame.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleDetector.granules">
+<span class="sig-name descname"><span class="pre">granules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#id0" title="flickerprint.common.granule_locator.Granule"><span class="pre">Granule</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleDetector.granules" title="Link to this definition">#</a></dt>
+<dd><p>Iterator for the granules detected by in this frame.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleDetector.labelGranules">
+<span class="sig-name descname"><span class="pre">labelGranules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleDetector.labelGranules" title="Link to this definition">#</a></dt>
+<dd><p>Label the granules within the images.</p>
+<p>This creates an integer array with each granules labeled with a difference
+integer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleDetector.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleDetector.plot" title="Link to this definition">#</a></dt>
+<dd><p>Show the labelled granules within the image.</p>
+<p>If no <cite>ax</cite> is provided then create a new matplotlib axis and save to <code class="docutils literal notranslate"><span class="pre">save_path</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleNotFoundError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flickerprint.common.granule_locator.</span></span><span class="sig-name descname"><span class="pre">GranuleNotFoundError</span></span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleNotFoundError" title="Link to this definition">#</a></dt>
+<dd><p>Raise this Exception if no granules are found.</p>
+<p>This can be useful to explicitly catch awkward edge cases where empty arrays of
+granules will cause troubles.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.GranuleNotFoundError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.GranuleNotFoundError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flickerprint.common.granule_locator.thresholdDetector">
+<span class="sig-prename descclassname"><span class="pre">flickerprint.common.granule_locator.</span></span><span class="sig-name descname"><span class="pre">thresholdDetector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flickerprint.common.granule_locator.thresholdDetector" title="Link to this definition">#</a></dt>
+<dd><p>Otsu based detection.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="frame_gen.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Frame Generation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="boundary_extraction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Boundary Extraction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-flickerprint.common.granule_locator">Source</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">Outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.DoG"><code class="docutils literal notranslate"><span class="pre">DoG()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.Objects"><code class="docutils literal notranslate"><span class="pre">Objects()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.Granule"><code class="docutils literal notranslate"><span class="pre">Granule()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">Granule</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleDetector"><code class="docutils literal notranslate"><span class="pre">GranuleDetector</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleDetector.mask"><code class="docutils literal notranslate"><span class="pre">GranuleDetector.mask</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleDetector.labelled_granules"><code class="docutils literal notranslate"><span class="pre">GranuleDetector.labelled_granules</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleDetector.granules"><code class="docutils literal notranslate"><span class="pre">GranuleDetector.granules()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleDetector.labelGranules"><code class="docutils literal notranslate"><span class="pre">GranuleDetector.labelGranules()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleDetector.plot"><code class="docutils literal notranslate"><span class="pre">GranuleDetector.plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleNotFoundError"><code class="docutils literal notranslate"><span class="pre">GranuleNotFoundError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.GranuleNotFoundError.with_traceback"><code class="docutils literal notranslate"><span class="pre">GranuleNotFoundError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flickerprint.common.granule_locator.thresholdDetector"><code class="docutils literal notranslate"><span class="pre">thresholdDetector()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source_code/granule_detection.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright FlickerPrint 2020-2025.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

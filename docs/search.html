@@ -6,9 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Welcome to the FlickerPrint documentation! &#8212; FlickerPrint  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - FlickerPrint  documentation</title>
   
   
   
@@ -44,11 +42,12 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/language_data.js"></script>
+  <script src="searchindex.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="User Guide" href="user_guide/user_guide.html" />
+    <link rel="search" title="Search" href="#" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -70,7 +69,7 @@
   <dialog id="pst-search-dialog">
     
 <form class="bd-search d-flex align-items-center"
-      action="search.html"
+      action="#"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -106,7 +105,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -212,10 +211,6 @@
     </div>
   
 
-  
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
   
 </div>
 
@@ -333,85 +328,42 @@
               <div class="bd-header-article d-print-none"></div>
               
               
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
-  <section id="welcome-to-the-flickerprint-documentation">
-<h1>Welcome to the FlickerPrint documentation!<a class="headerlink" href="#welcome-to-the-flickerprint-documentation" title="Link to this heading">#</a></h1>
-<p>FlickerPrint is a Python package for determining the interfacial tension and bending ridgidity (as well as other properties) of a population of soft bodies such as condensates or vesicles by analysing their shape fluctuations in confocal microscopy images.
-This flicker spectroscopy analysis can be parallised across multiple cores to allow whole populations of soft bodies to be analysed.</p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/user_guide.html">User Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/installation.html">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/getting_started.html">Getting started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/worked_example.html">Worked Example</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="details/details.html">Details</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="details/workflow.html">Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="details/taking_images.html">Image Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="details/directory_structure.html">Structure of the Experiment Directory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="details/configuration.html">Configuration File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="details/data_storage.html">Data Storage</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="source_code/module_source_code.html">Module Source Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_out_more/papers.html">Find Out More</a></li>
-</ul>
-</div>
-</section>
-<section id="flicker-spectroscopy">
-<h1>Flicker Spectroscopy<a class="headerlink" href="#flicker-spectroscopy" title="Link to this heading">#</a></h1>
-<p>Flicker spectroscopy is a method to measure the properties of biomolecular condensates by measuring the thermal fluctuations of their boundary (measuring the properties of vesicles is also supported).
-See the <a class="reference external" href="https://doi.org/10.1126/sciadv.adg0432">paper</a> for more information about the theory used.</p>
-</section>
-<section id="quick-install">
-<h1>Quick Install<a class="headerlink" href="#quick-install" title="Link to this heading">#</a></h1>
-<p>See <a class="reference internal" href="user_guide/installation.html#installation"><span class="std std-ref">Installation</span></a> for details of the prerequesites for the package.
-Download the source code from <a class="reference external" href="https://github.com/FlickerPrint/FlickerPrint">GitHub</a>, navigate to the source folder and install using PiP:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</pre></div>
-</div>
-</section>
-<section id="recording-images">
-<h1>Recording Images<a class="headerlink" href="#recording-images" title="Link to this heading">#</a></h1>
-<p>FlickerPrint requires the use of confocal microscopy images, taken at (approximately) the equator of the objects of interest.
-Systems can be either <em>in vitro</em> or in live cells, provided that the condensates are in thermal equilibrium so are not being impacted by external forces or energies and that the objects display shape fluctuations above the resolution limit of FlickerPrint (typically <span class="math notranslate nohighlight">\(\approx\)</span> 0.1 pixels).</p>
-<p>See <a class="reference internal" href="details/taking_images.html#image-requirements"><span class="std std-ref">Image Requirements</span></a> for a guide to take images best suited for analysis.</p>
-</section>
-<section id="run-analysis">
-<h1>Run Analysis<a class="headerlink" href="#run-analysis" title="Link to this heading">#</a></h1>
-<p>The package can be run from the command-line.
-Create an experiment directory with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>create-project<span class="w"> </span>EXPERIMENT_NAME
-</pre></div>
-</div>
-<p>and run the analysis from that directory with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>run
-</pre></div>
-</div>
-<p>See <a class="reference internal" href="user_guide/getting_started.html#getting-started"><span class="std std-ref">Getting started</span></a> for a short guide or <a class="reference internal" href="details/workflow.html#workflow"><span class="std std-ref">Workflow</span></a> for more details.</p>
-</section>
-<section id="index-and-search">
-<h1>Index and Search<a class="headerlink" href="#index-and-search" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
-</section>
+  <div class="bd-search-container">
+    <h1>Search</h1>
+    <noscript>
+      <div class="admonition error">
+        <p class="admonition-title">Error</p>
+        <p>Please activate JavaScript to enable the search functionality.</p>
+      </div>
+    </noscript>
+    
+<form class="bd-search d-flex align-items-center"
+      action="#"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    <div id="search-results"></div>
+  </div>
+  <script>
+    // Activate the search field on page load
+    let searchInput = document.querySelector("form.bd-search input");
+    if (searchInput) {
+        searchInput.focus();
+        searchInput.select();
+        console.log("[PST]: Set focus on search field.");
+    }
+  </script>
 
-
-                </article>
-              
               
               
               
@@ -419,56 +371,12 @@ Create an experiment directory with</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="user_guide/user_guide.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">User Guide</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to the FlickerPrint documentation!</a><ul class="visible nav section-nav flex-column">
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#flicker-spectroscopy">Flicker Spectroscopy</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-install">Quick Install</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#recording-images">Recording Images</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run-analysis">Run Analysis</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#index-and-search">Index and Search</a></li>
-</ul>
-
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
-
-</div></div>
               
             
           </div>
