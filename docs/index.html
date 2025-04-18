@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
   -->
   <noscript>
     <style>
@@ -27,23 +27,25 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -312,14 +314,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -367,28 +364,40 @@ This flicker spectroscopy analysis can be parallised across multiple cores to al
 <li class="toctree-l1"><a class="reference internal" href="find_out_more/papers.html">Find Out More</a></li>
 </ul>
 </div>
-</section>
 <section id="flicker-spectroscopy">
-<h1>Flicker Spectroscopy<a class="headerlink" href="#flicker-spectroscopy" title="Link to this heading">#</a></h1>
+<h2>Flicker Spectroscopy<a class="headerlink" href="#flicker-spectroscopy" title="Link to this heading">#</a></h2>
 <p>Flicker spectroscopy is a method to measure the properties of biomolecular condensates by measuring the thermal fluctuations of their boundary (measuring the properties of vesicles is also supported).
 See the <a class="reference external" href="https://doi.org/10.1126/sciadv.adg0432">paper</a> for more information about the theory used.</p>
 </section>
 <section id="quick-install">
-<h1>Quick Install<a class="headerlink" href="#quick-install" title="Link to this heading">#</a></h1>
+<h2>Quick Install<a class="headerlink" href="#quick-install" title="Link to this heading">#</a></h2>
 <p>See <a class="reference internal" href="user_guide/installation.html#installation"><span class="std std-ref">Installation</span></a> for details of the prerequesites for the package.
-Download the source code from <a class="reference external" href="https://github.com/FlickerPrint/FlickerPrint">GitHub</a>, navigate to the source folder and install using PiP:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+Download the source code from <a class="reference external" href="https://github.com/FlickerPrint/FlickerPrint">GitHub</a>, navigate to the <code class="docutils literal notranslate"><span class="pre">FlickerPrint/src</span></code> folder and install using pip:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+macOS and Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="recording-images">
-<h1>Recording Images<a class="headerlink" href="#recording-images" title="Link to this heading">#</a></h1>
+<h2>Recording Images<a class="headerlink" href="#recording-images" title="Link to this heading">#</a></h2>
 <p>FlickerPrint requires the use of confocal microscopy images, taken at (approximately) the equator of the objects of interest.
 Systems can be either <em>in vitro</em> or in live cells, provided that the condensates are in thermal equilibrium so are not being impacted by external forces or energies and that the objects display shape fluctuations above the resolution limit of FlickerPrint (typically <span class="math notranslate nohighlight">\(\approx\)</span> 0.1 pixels).</p>
 <p>See <a class="reference internal" href="details/taking_images.html#image-requirements"><span class="std std-ref">Image Requirements</span></a> for a guide to take images best suited for analysis.</p>
 </section>
 <section id="run-analysis">
-<h1>Run Analysis<a class="headerlink" href="#run-analysis" title="Link to this heading">#</a></h1>
+<h2>Run Analysis<a class="headerlink" href="#run-analysis" title="Link to this heading">#</a></h2>
 <p>The package can be run from the command-line.
 Create an experiment directory with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flickerprint<span class="w"> </span>create-project<span class="w"> </span>EXPERIMENT_NAME
@@ -401,12 +410,13 @@ Create an experiment directory with</p>
 <p>See <a class="reference internal" href="user_guide/getting_started.html#getting-started"><span class="std std-ref">Getting started</span></a> for a short guide or <a class="reference internal" href="details/workflow.html#workflow"><span class="std std-ref">Workflow</span></a> for more details.</p>
 </section>
 <section id="index-and-search">
-<h1>Index and Search<a class="headerlink" href="#index-and-search" title="Link to this heading">#</a></h1>
+<h2>Index and Search<a class="headerlink" href="#index-and-search" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -447,26 +457,22 @@ Create an experiment directory with</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to the FlickerPrint documentation!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flicker-spectroscopy">Flicker Spectroscopy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-install">Quick Install</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recording-images">Recording Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-analysis">Run Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-and-search">Index and Search</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#flicker-spectroscopy">Flicker Spectroscopy</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-install">Quick Install</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#recording-images">Recording Images</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run-analysis">Run Analysis</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#index-and-search">Index and Search</a></li>
-</ul>
-
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -481,8 +487,8 @@ Create an experiment directory with</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -515,8 +521,7 @@ Create an experiment directory with</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
 </p></div>
       
     </div>
