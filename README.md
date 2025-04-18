@@ -5,14 +5,14 @@ FlickerPrint is a software package for conducting flicker spectroscopy analysis 
 ## Prerequisites
 
 FlickerPrint requires Python 3.9 to 3.11 and an installation of Java.
-Full details of how to install these prerequisies will be available in the documentation.
+Full details of how to install these prerequisies will be available in the `documentation <https://flickerprint.github.io/FlickerPrint/>`_.
 
 ## Installation
 
-Installation of FlickerPrint directly via pip is not yet supported. To install the package, clone the Git repository, then navigate to the root directory of the repository and run:
+Installation of FlickerPrint directly via pip is not yet supported. To install the package, clone the Git repository, then navigate to the ``FlickerPrint/src`` directory of the repository and run:
 
 ```bash
-pip install -e .
+python3 pip install .
 ```
 
 ## Usage
