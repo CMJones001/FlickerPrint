@@ -150,3 +150,19 @@ Setting Environment Variables
 
          Then add the above two lines to the file, save it and relaunch the terminal.
 
+Installation with Docker
+++++++++++++++++++++++++
+
+A Dockerfile is available in the root directory of the `GitHub repository <https://github.com/FlickerPrint/FlickerPrint>`_ for building a `Docker <https://www.docker.com>`_ image of FlickerPrint.
+To build the image, open a terminal and navigate to the root directory of the repository.
+Then run the following command:
+
+.. code-block:: bash
+
+   docker build -t flickerprint .
+
+To run the image, use the following command:
+
+.. code-block:: bash
+   
+   docker run -it flickerprint

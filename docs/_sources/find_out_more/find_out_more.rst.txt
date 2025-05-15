@@ -1,11 +1,10 @@
-.. _details:
+.. _find_out_more:
 
-=======
-Details
-=======
+=============
+Find Out More
+=============
 
-In this section, we go into more depth as to how FlickerPrint works.
-This information is not typically required for standard use of FlickerPrint, though it may be useful if you are using the package in conjunction with other tools or systems (for example, running FlickerPrint in a High Performance Computing environment or using your own tools to analyse the output data).
+Find out more about the theory and technical details of FlickerPrint.
 
 .. toctree::
     :caption: User Guide
@@ -19,6 +18,7 @@ This information is not typically required for standard use of FlickerPrint, tho
 .. toctree::
     :caption: Details
     :maxdepth: 1
+    :hidden:
 
     ../details/workflow
     ../details/taking_images
@@ -36,7 +36,6 @@ This information is not typically required for standard use of FlickerPrint, tho
 .. toctree::
     :caption: Find Out more
     :maxdepth: 1
-    :hidden:
 
     ../find_out_more/papers
     ../find_out_more/contributors

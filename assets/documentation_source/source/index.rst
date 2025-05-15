@@ -17,7 +17,11 @@ This flicker spectroscopy analysis can be parallised across multiple cores to al
     :maxdepth: 1
 
     source_code/module_source_code
-    find_out_more/papers
+
+.. toctree::
+    :maxdepth: 2
+    
+    find_out_more/find_out_more
 
 
 

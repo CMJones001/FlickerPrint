@@ -151,7 +151,7 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../find_out_more/papers.html">
+  <a class="nav-link nav-internal" href="../find_out_more/find_out_more.html">
     Find Out More
   </a>
 </li>
@@ -267,7 +267,7 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../find_out_more/papers.html">
+  <a class="nav-link nav-internal" href="../find_out_more/find_out_more.html">
     Find Out More
   </a>
 </li>
@@ -348,7 +348,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Find Out more</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../find_out_more/papers.html">Find Out More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../find_out_more/papers.html">FlickerPrint Papers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../find_out_more/contributors.html">Contributors</a></li>
+
 </ul>
 </div>
 </nav></div>
@@ -537,6 +539,19 @@ To do so, open the appropriate config file for your system:</p>
 </div>
 </div>
 </section>
+<section id="installation-with-docker">
+<h2>Installation with Docker<a class="headerlink" href="#installation-with-docker" title="Link to this heading">#</a></h2>
+<p>A Dockerfile is available in the root directory of the <a class="reference external" href="https://github.com/FlickerPrint/FlickerPrint">GitHub repository</a> for building a <a class="reference external" href="https://www.docker.com">Docker</a> image of FlickerPrint.
+To build the image, open a terminal and navigate to the root directory of the repository.
+Then run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>flickerprint<span class="w"> </span>.
+</pre></div>
+</div>
+<p>To run the image, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>flickerprint
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -590,6 +605,7 @@ To do so, open the appropriate config file for your system:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-specific-prerequisites">System-Specific Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-via-pip">Installation via pip</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-environment-variables">Setting Environment Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-with-docker">Installation with Docker</a></li>
 </ul>
   </nav></div>
 

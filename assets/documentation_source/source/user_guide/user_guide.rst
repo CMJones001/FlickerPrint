@@ -38,3 +38,4 @@ This section covers the basics; for more detailed information, see :ref:`details
     :hidden:
 
     ../find_out_more/papers
+    ../find_out_more/contributors

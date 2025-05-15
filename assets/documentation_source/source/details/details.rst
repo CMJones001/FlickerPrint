@@ -39,3 +39,4 @@ This information is not typically required for standard use of FlickerPrint, tho
     :hidden:
 
     ../find_out_more/papers
+    ../find_out_more/contributors

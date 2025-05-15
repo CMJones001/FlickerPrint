@@ -1,8 +1,8 @@
 .. _papers:
 
-=============
-Find Out More
-=============
+===================
+FlickerPrint Papers
+===================
 
 
 The papers linked below provide more detailed information on the theory and methods used in FlickerPrint.
