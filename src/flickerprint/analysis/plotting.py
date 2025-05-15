@@ -358,7 +358,7 @@ def overlap_hist(
             chunk[plot_column], bins=n_bins, density=density
         )
 
-        plot_data['experiment'][num*(bins_size-1):(num+1)*(bins_size-1)] = [label for _ in range(len(hist_vals))]
+        plot_data['experiment'][num*(bins_size):(num+1)*(bins_size-1)] = [label for _ in range(len(hist_vals))]
         plot_data['hist_values'] += hist_vals.tolist()
         plot_data['bin_edges'] += bin_edges[:-1].tolist() # Exclude last value, defaults to 1 (last bin edge)
 

@@ -270,7 +270,7 @@ if not check_requirements():
     exit(1)
 
 setup(name='flickerprint',
-      version=0.1,
+      version=0.3,
       author='Carl Jones, Jack Law, Thomas Williamson, Fynn Wolf, Endre Tønnessen',
       maintainer='Thomas Williamson',
       python_requires=">=3.9, <3.12",

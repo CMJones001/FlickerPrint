@@ -70,6 +70,7 @@ import pandas as pd
 import pickle as pkl
 from scipy.constants import Boltzmann as kB
 import warnings
+import os
 
 from flickerprint.common.utilities import strtobool
 from flickerprint.common.configuration import config
@@ -238,14 +239,23 @@ def main(working_dir: Path, plotting=False, cores=1):
     working_dir = Path(working_dir)
     config.refresh(working_dir / "config.yaml")
     print(f"\nConfiguration file location: {working_dir}/config.yaml")
-    input_paths = iter(list(working_dir.glob("fourier/*.h5")) + list(working_dir.glob("fourier/*.pkl")))# This lets us search for either .h5 or .pkl files.
+    input_paths = list(working_dir.glob("fourier/*.h5")) + list(working_dir.glob("fourier/*.pkl"))# This lets us search for either .h5 or .pkl files.
     print(f"Current working directory: {working_dir}")
+    if input_paths == []:
+            raise FileNotFoundError(f"\nNo images found in {working_dir}/fourier.\nCheck that you are in the correct directory.")
+
+    if cores > os.cpu_count():
+        cores = os.cpu_count()
+        warnings.warn(f"Number of cores requested exceeds available cores. Only {os.cpu_count()} cores are available.", UserWarning)
+    if cores > len(input_paths):
+        cores = len(input_paths)
     if cores == 1:
         print(f"Using 1 core")
     else:
         print(f"Using {cores} cores")
     
     print(f"----------\n")
+    input_paths = iter(input_paths)
 
     # Multiprocessing map only accepts one argument, so we use ``partial`` to remove
     # the constant arguments. ``imap`` would also work.
@@ -265,13 +275,17 @@ def main(working_dir: Path, plotting=False, cores=1):
     _write_hdf(working_dir / "aggregate_fittings.h5", aggregate_data, fourier_terms)
     if bool(strtobool(config("spectrum_fitting", "plot_spectra_and_heatmaps"))):
         try:
-            subprocess.call(f"zip -r heatmaps.zip heatmaps", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
-            subprocess.call(f"zip -r spectra.zip spectra", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
-            subprocess.call(f"rm -rf spectra", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
-            subprocess.call(f"rm -rf heatmaps", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
-            subprocess.call(f"mkdir fitting/spectra fitting/heatmaps", shell=True)
+            heatmaps_return = subprocess.call(f"zip -r heatmaps.zip heatmaps", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
+            spectra_return = subprocess.call(f"zip -r spectra.zip spectra", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
+            if heatmaps_return == 0 and spectra_return == 0:
+                subprocess.call(f"rm -rf spectra", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
+                subprocess.call(f"rm -rf heatmaps", shell =True, cwd=f"{working_dir}/fitting", stdout=subprocess.DEVNULL)
+                subprocess.call(f"mkdir fitting/spectra fitting/heatmaps", shell=True)
+            else:
+                print("Zipping spectra and heatmaps images unsuccessful. Images will be available as separate files instead.")
             subprocess.call(f"cd {working_dir}", shell=True)
         except:
+            subprocess.call(f"cd {working_dir}", shell=True)
             print("Zipping spectra and heatmaps images unsuccessful. Images will be available as separate files instead.")
     print(f"\nSpectrum fitting analysis complete\n----------------------------------\n")
 

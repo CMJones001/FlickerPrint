@@ -195,13 +195,17 @@ def main(
     if bool(strtobool(config("image_processing", "granule_images"))):
         # If the debug images are saved, zip them up at the end to make them easier to transfer.
         try:
-            subprocess.call(f"zip -r detection.zip detection", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
-            subprocess.call(f"zip -r outline.zip outline", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
-            subprocess.call(f"rm -rf outline", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
-            subprocess.call(f"rm -rf detection", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
-            subprocess.call(f"mkdir tracking/outline tracking/detection", shell=True)
+            detection_return = subprocess.call(f"zip -r detection.zip detection", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
+            outline_return = subprocess.call(f"zip -r outline.zip outline", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
+            if detection_return == 0 and outline_return == 0:
+                subprocess.call(f"rm -rf outline", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
+                subprocess.call(f"rm -rf detection", shell =True, cwd=f"{output_dir}/tracking", stdout=subprocess.DEVNULL)
+                subprocess.call(f"mkdir tracking/outline tracking/detection", shell=True)
+            else:
+                print("Zipping detection and outline images unsuccessful. Images will be available as separate files instead.")
             subprocess.call(f"cd {output_dir}", shell=True)
         except:
+            subprocess.call(f"cd {output_dir}", shell=True)
             print("Zipping detection and outline images unsuccessful. Images will be available as separate files instead.")
     print(f"\n\nFourier analysis complete\n-------------------------\n")
 
@@ -272,7 +276,9 @@ def process_single_image(
         except gl.GranuleNotFoundError:
             if frame_num == 0:
                 print("No granules found on first frame, quitting")
-                raise SystemExit
+                process_bar.close()
+                raise gl.GranuleNotFoundError(
+                    f"\n\nNo granules found in {input_image}. Please check the values in the config file and try again.")
             else:
                 continue
 

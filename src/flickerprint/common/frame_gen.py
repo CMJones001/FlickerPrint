@@ -139,7 +139,6 @@ def gen_opener(im_path):
     For now we simply search for the correct extension.
     A generator for the ``MicroscopeFrames`` s and common metadata.
     """
-    print(im_path)
     im_path = Path(im_path)
     image_type = _getType(im_path)
     if image_type == GeneratorTypes.BIOFORMATS:
@@ -222,21 +221,23 @@ def bioformatsGen(im_path):
 
     if not JAVAVM_STARTED:
         startVM()
-
-    with bf.ImageReader(str(im_path)) as reader:
-        # For frame in frame_nums
-        for frame_num in range(n_frames):
-            frame_data = reader.read(t=frame_num, z=0, c=0, rescale=False)
-            yield MicroscopeFrame(
-                im_data=frame_data,
-                im_path=im_path,
-                frame_num=frame_num,
-                total_frames=n_frames,
-                timestamp=time_stamps[frame_num],
-                pixel_size=pixel_size,
-                actual_pixel_size=True,
-                actual_timestamp=actual_timestamp,
-            )
+    try:
+        with bf.ImageReader(str(im_path)) as reader:
+            # For frame in frame_nums
+            for frame_num in range(n_frames):
+                frame_data = reader.read(t=frame_num, z=0, c=0, rescale=False)
+                yield MicroscopeFrame(
+                    im_data=frame_data,
+                    im_path=im_path,
+                    frame_num=frame_num,
+                    total_frames=n_frames,
+                    timestamp=time_stamps[frame_num],
+                    pixel_size=pixel_size,
+                    actual_pixel_size=True,
+                    actual_timestamp=actual_timestamp,
+                )
+    except AttributeError:
+        closeVM()
 
 def _getIMStimeStamps(n_frames, md) -> np.ndarray:
     """ Return an array with the timestamps for each frame. """
@@ -341,7 +342,7 @@ def closeVM():
     global JAVAVM_STARTED
     if JAVAVM_STARTED:
         javabridge.kill_vm()
-        JAVAVM_STARTED = True
+        JAVAVM_STARTED = False
 
 
 def stfuLogging(level="ERROR"):
