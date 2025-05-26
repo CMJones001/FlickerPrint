@@ -379,10 +379,6 @@ class _Fitting:
         )
         data = {"sigma_bars": sigma_bars, "kappa_scales": kappa_scales, "rms_grid": rms_grid, "rms_invert": rms_invert}
 
-        import pickle as pkl
-
-        with open(str(save_name.with_suffix(".pkl")), "wb") as f:
-            pkl.dump(data, f)
         min_error = np.min(rms_grid)
         min_args = np.unravel_index(np.argmin(rms_grid, axis=None), rms_grid.shape)
         sigma_bar_min = sigma_bars[min_args[1]]
@@ -543,7 +539,7 @@ class FittingLeastSquares(_Fitting):
         res_lsq = least_squares(self._get_residuals,initial_guess,
             args = (dataX,dataY),
             diff_step = 0.01,
-            bounds=([-2.0, 0.0],[np.inf,np.inf])
+            bounds=([0.0, 0.0],[np.inf,np.inf])
             )   
 
         pfit = res_lsq["x"]

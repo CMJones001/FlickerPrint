@@ -59,6 +59,10 @@ def main(input_file: Path, output_dir: Path = "/tmp/", bins=8, density=False, la
     output_dir = str(Path(output_dir))
     granule_data = plot.read_data(input_file)
     print(f"\n-------------------\n")
+
+    if granule_data.empty:
+        raise ValueError(f"\n\nThe aggregate_fittings file is empty. Please check the input file: {input_file}.\n")
+
     if img_path_filter is not None:
         for index, row in granule_data.iterrows():
             granule_data['image_path'][index] = str(granule_data['image_path'][index])
@@ -74,7 +78,7 @@ def main(input_file: Path, output_dir: Path = "/tmp/", bins=8, density=False, la
         else:
             granule_filter_query_results = granule_data.query(filter, inplace=False)
         for label, chunk in granule_filter_query_results.groupby("experiment"):
-            n_granules = len(chunk)
+            n_granules = chunk.shape[0]
             if label == 'unknown':
                 print(f"{n_granules} granules when using filter: '{filter}'")
             else:
@@ -87,6 +91,8 @@ def main(input_file: Path, output_dir: Path = "/tmp/", bins=8, density=False, la
         "sigma > 1e-10 and pass_rate > 0.6 and fitting_error < 0.5 and fitting_diff > 0.03",# and mean_radius > 0.4 and mean_radius < 0.6",
         inplace=True,
     )
+    if granule_data.empty:
+        raise ValueError(f"\n\nThe filtered dataset is empty. Please check the input filters.\n")
     granule_data["sigma_micro"] = granule_data["sigma"] * 1e6
 
     # # Pair plot does not work well with latex for some reason

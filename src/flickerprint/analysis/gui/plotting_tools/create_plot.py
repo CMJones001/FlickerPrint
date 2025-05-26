@@ -179,4 +179,6 @@ def filter_dataset(input: Inputs, granule_data_df: pd.DataFrame) -> pd.DataFrame
             inplace=False
         )
         granule_data_df = filtered_granule_data
+        if filtered_granule_data.empty:
+            raise ValueError(f"\n\nThe filtered dataset is empty. Please check the input filters.\n")
     return granule_data_df

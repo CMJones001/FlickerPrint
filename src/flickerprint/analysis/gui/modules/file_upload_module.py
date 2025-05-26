@@ -152,6 +152,11 @@ def _load_terms(aggregate_fittings_path: Path) -> pd.DataFrame:
 
     aggregate_fittings["times"] = times
 
+    if aggregate_fittings.empty:
+        raise ValueError(
+            f"The file {aggregate_fittings_path} is empty. Please check the input file."
+        )
+
     return aggregate_fittings
 
 
