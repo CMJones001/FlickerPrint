@@ -101,6 +101,14 @@ Steps used to locate the granule within the image and draw the granule boundary.
   This parameter sets the maximum change in intensity between two adjacent pixels for them to be still considered inside the granule.
   This is **not** used to determine the exact location of the boundary.
 
+``tracking_threshold``
+  **Default:** *15*
+
+  The maximum distance in pixels between two granules in consecutive frames for them to be considered the same granule.
+  This is used to link granules between frames, and should be set to a value that is larger than the expected movement of the granules between frames.
+  The default value is suitable for most experiments, but can be adjusted if you are having issues with tracking.
+  Note that setting this value too high could lead to false positives, where granules are incorrectly linked between frames.
+
 ``granule_images``
   **Default:** *False*
 

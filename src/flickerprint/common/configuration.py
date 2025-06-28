@@ -40,6 +40,7 @@ SCHEMA = yaml.Map(
                 "granule_maximum_radius": yaml.Float(),
                 "granule_minimum_intensity": yaml.Float(),
                 "fill_threshold": yaml.Float(),
+                "tracking_threshold": yaml.Float(),
                 "granule_images": yaml.Bool()
             }
         ),

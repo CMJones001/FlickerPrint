@@ -138,6 +138,13 @@ def main(
     print(f"\nConfiguration file location: {config_location}")
     config.refresh(config_location)
 
+    tracking_threshold = float(config("image_processing", "tracking_threshold"))
+    if tracking_threshold < 10 or tracking_threshold > 15:
+        warnings.warn(
+            f"Tracking threshold is set to {tracking_threshold}, which is outside the recommended range of 10 <= threshold <= 15. This may lead to poor tracking results.",
+            UserWarning,
+        )
+
     # Pull any required args from the config file
     if input_image is None:
         input_image = str(config("workflow", "image_dir"))
@@ -248,7 +255,8 @@ def process_single_image(
     fourier_frames = []
     granule_ids = None
     positions = None
-    granule_tracker = be._GranuleLinker(memory=10,max_distance=15)
+    max_distance = float(config("image_processing", "tracking_threshold"))
+    granule_tracker = be._GranuleLinker(memory=10,max_distance=max_distance)
 
     print(f"#{_pbar_pos+1} Working on image: {input_image}")
     # Add a 0.5 second sleep to ensure that the progress bars appear in the correct place.

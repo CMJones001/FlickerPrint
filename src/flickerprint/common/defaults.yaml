@@ -64,6 +64,13 @@ image_processing:
   ## not used with method:intensity
   fill_threshold: 0.6
 
+  ## Condensate Tracking Threshold
+  ##  The value is given in pixels, and is used to link granules between frames.
+  ##  The closest granule in the previous frame must be within this distance
+  ##  to be considered the same granule.
+  ##  Do not change this value unless you are having issues with condensate tracking.
+  tracking_threshold: 15
+
   ## Produce images of the granules, showing their position in the frame and their boundaries.
   ##  True: Save an image of the granules for every 100 frames, with their center and boundary
   ##  marked (results in lots of files which require significant additional processing)
