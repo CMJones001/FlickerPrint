@@ -250,6 +250,11 @@ A ``pandas.DataFrame`` containing a list of granule properties, with the columns
 
    The error on interfacial tension when using the interfacial tension only model.
 
+:above_res_threshold:
+   **bool**
+
+   A boolean indicating whether the granule has at least half of its fluctuation modes above the resolution threshold of the video. 
+
 .. _aggregate_data_attributes:
 
 Attributes

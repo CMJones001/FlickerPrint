@@ -228,7 +228,7 @@ def graph_module_server(input: Inputs,
             if k in ['allow_multiple_experiments', "plot_type", "allow_internal_plot_data_download"]: # Logic not needed in plot function.
                 continue
             for k_2, v_2 in plot_parameters[k].items():
-                if k_2 in ['bin_type', 'bin_start', 'bin_end', 'n_bins']:
+                if k_2 in ['bin_type', 'bin_start', 'bin_end', 'n_bins', "above_res_threshold"]:
                     continue
                 if k == "static_input": # If static value, no need to get it from ui
                     plot_parameters_from_user_input[k_2] = v_2['value']

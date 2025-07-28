@@ -96,6 +96,7 @@ def process_fourier_file(input_path: Path, output: Path, plotting=True):
     max_order = int(config("spectrum_fitting", "fitting_orders"))
     fitting_method = "least_squares"
     plot_heatmaps = bool(strtobool(config("spectrum_fitting", "plot_spectra_and_heatmaps")))
+    pixel_size = frame_info["pixel_size"]
 
     for granule_id, granule in groups:
 
@@ -132,6 +133,8 @@ def process_fourier_file(input_path: Path, output: Path, plotting=True):
         mag_df.reset_index(inplace=True)
         mag_df["fixed_squ"] = np.abs(mag_df["mag_mean"]) ** 2
         q_2_mag = mag_df["fixed_squ"][0]
+        pixel_threshold = (pixel_size/15)**2/(mean_radius*1e6)**2
+        above_res_threshold = (mag_df["fluct_squ"] > pixel_threshold).sum() > (len(mag_df["fluct_squ"]) / 2)
 
         # TODO: Implement a truncated fitting method
         # For now fit only to the first few orders
@@ -219,7 +222,8 @@ def process_fourier_file(input_path: Path, output: Path, plotting=True):
             bbox_top=bbox_top,
             q_2_mag=q_2_mag,
             experiment = config("workflow", "experiment_name"),
-            timestamp = timestamp
+            timestamp = timestamp,
+            above_res_threshold= above_res_threshold,
         )
         if fittingST:
             data["fitting_diff"] = fittingST.fitting_error - fitting.fitting_error

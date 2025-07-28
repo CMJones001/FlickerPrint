@@ -50,6 +50,10 @@ twoDHist_plot_input_options={
             'value':True, 
             'label':'log_scaleY'
         }),
+        'above_res_threshold':dict({
+            'value':True,
+            'label':'Above resolution threshold'
+        }),
     }),
     'select_input':dict({
         # Custom select inputs. Parameters are ui.input_select() parameters
@@ -95,6 +99,10 @@ scatter_plot_input_options={
         'log_scaleY':dict({
             'value':True, 
             'label':'log_scaleY'
+        }),
+        'above_res_threshold':dict({
+            'value':True,
+            'label':'Above resolution threshold'
         }),
     }),
     'select_input':dict({
@@ -149,6 +157,10 @@ filter_plot_input_options={
             'value':False, 
             'label':'errors'
         }),
+        'above_res_threshold':dict({
+            'value':True,
+            'label':'Above resolution threshold'
+        }),
     }),
     'select_input':dict({
         # Custom select inputs. Parameters are ui.input_select() parameters
@@ -199,6 +211,11 @@ overlap_hist_plot_input_options={
             'value':False, 
             'label':'Density'
         }),
+        'above_res_threshold':dict({
+            'value':True,
+            'label':'Above resolution threshold'
+        }),
+    
     }),
     'select_input':dict({
         # Custom select inputs. Parameters are ui.input_select() parameters
@@ -227,6 +244,10 @@ violin_plot_input_options={
     }),
     'numeric_input': dict({}),
     'bool_input':dict({
+        'above_res_threshold':dict({
+            'value':True,
+            'label':'Above resolution threshold'
+        }),
     }),
     'select_input':dict({
         # Custom select inputs. Parameters are ui.input_select() parameters

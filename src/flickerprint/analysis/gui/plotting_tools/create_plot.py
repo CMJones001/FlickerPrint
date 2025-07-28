@@ -168,8 +168,16 @@ def filter_dataset(input: Inputs, granule_data_df: pd.DataFrame) -> pd.DataFrame
             query.append(filter)
         if max_val is not None:
             filter = f"{param} < {max_val}"
-            query.append(filter)    
+            query.append(filter)
 
+    # Check to see whether the resolution threshold filter is selected:
+    if input['above_res_threshold']():
+        try:
+            granule_data_df = granule_data_df[granule_data_df["above_resolution_threshold"] == True]
+        except KeyError:
+            # If the column does not exist (e.g. from older datasets), we skip this filter
+            pass
+    
     # If any filters, run query
     if len(query) > 0:
         # Add 'and' between all queries except the last one.
