@@ -134,7 +134,6 @@ def process_fourier_file(input_path: Path, output: Path, plotting=True):
         mag_df["fixed_squ"] = np.abs(mag_df["mag_mean"]) ** 2
         q_2_mag = mag_df["fixed_squ"][0]
         pixel_threshold = (pixel_size/15)**2/(mean_radius*1e6)**2
-        above_res_threshold = (mag_df["fluct_squ"] > pixel_threshold).sum() > (len(mag_df["fluct_squ"]) / 2)
 
         # TODO: Implement a truncated fitting method
         # For now fit only to the first few orders
@@ -199,6 +198,7 @@ def process_fourier_file(input_path: Path, output: Path, plotting=True):
         fourier_term = fitting.mag_df.copy()
         fourier_term["granule_id"] = granule_id
         fourier_term["figure_path"] = fitting.save_name
+        above_res_threshold = (fourier_term["experiment_spectrum"] > pixel_threshold).sum() > (len(fourier_term["experiment_spectrum"]) / 2)
 
         data = dict(
             granule_id=granule_id,
