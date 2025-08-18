@@ -107,18 +107,18 @@ def population_statistics(
                         "Maximum Value": f"{max_val:.3g}",
                         "Minimum Value": f"{min_val:.3g}",
                         "Sample Size": n_granules,
-                        "Geometric Distribution": log_scale
+                        "Log-Normal Distribution": log_scale
                     }, index=[0]))
                 else:
                     tmp.append(pd.DataFrame({
                         "Property": friendly_names[row],
                         "Mean Value": mean,
-                        "-1 Standard Deviation": std_lower,
-                        "+1 Standard Deviation": std_upper,
+                        "Lower Confidence Limit": std_lower,
+                        "Upper Confidence Limit": std_upper,
                         "Maximum Value": max_val,
                         "Minimum Value": min_val,
                         "Sample Size": n_granules,
-                        "Geometric Distribution": log_scale
+                        "Log-Normal Distribution": log_scale
                     }, index=[0]))
             except KeyError:
                 continue

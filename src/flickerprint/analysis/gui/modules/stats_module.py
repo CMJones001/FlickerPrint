@@ -83,7 +83,8 @@ def stats_module_ui():
                 ui.hr(),
 
                 # Unpack ui elemets from list
-                ui.input_selectize(id="experiment_selectize_input", label="Select experiments", choices=[""], multiple=allow_multiple_experiments, width="200px"),
+                ui.input_selectize(id="experiment_selectize_input", label="Select experiments", choices=[""], multiple=allow_multiple_experiments, width="100%"),
+                ui.input_switch(id="above_res_threshold", label="Above resolution threshold", value=True),
                 ui.row(),
                 ui.row(
                 # Filter

@@ -112,7 +112,7 @@ def graph_module_ui(label: str, plot_input_options: dict[dict[dict]]):
                 ui.hr(),
 
                 # Unpack ui elemets from list
-                ui.input_selectize(id="experiment_selectize_input", label="Select experiments", choices=[""], multiple=allow_multiple_experiments, width="200px"),
+                ui.input_selectize(id="experiment_selectize_input", label="Select experiments", choices=[""], multiple=allow_multiple_experiments, width="100%"),
                 *plot_input_select_axis_ui_elements,
                 *plot_input_switch_ui_elements,
                 
