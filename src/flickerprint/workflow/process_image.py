@@ -46,6 +46,7 @@ of cores are used, up to a maximum of the number specified with the -c flag.
 
 import argparse
 from pathlib import Path
+from functools import partial
 
 import h5py
 import subprocess
@@ -57,11 +58,15 @@ import os
 import warnings
 import multiprocessing as mp
 from time import sleep
+from more_itertools import peekable
+import numpy as np
+import matplotlib.pyplot as plt
 
 from flickerprint.common.utilities import strtobool
 import flickerprint.common.boundary_extraction as be
 import flickerprint.common.frame_gen as fg
 import flickerprint.common.granule_locator as gl
+import flickerprint.common.granule_locator_fft as glf
 import flickerprint.tools.plot_tools as pt
 from flickerprint.common.configuration import config
 import flickerprint.version as version
@@ -75,7 +80,7 @@ def parse_arguments():
     parser.add_argument(
         "-o",
         "--output",
-        type=Path | str,
+        type=Path,
         default=".",
         help="Directory for the output files.",
     )
@@ -211,7 +216,7 @@ def main(
             else:
                 print("Zipping detection and outline images unsuccessful. Images will be available as separate files instead.")
             subprocess.call(f"cd {output_dir}", shell=True)
-        except:
+        except Exception:
             subprocess.call(f"cd {output_dir}", shell=True)
             print("Zipping detection and outline images unsuccessful. Images will be available as separate files instead.")
     print(f"\n\nFourier analysis complete\n-------------------------\n")
@@ -250,11 +255,20 @@ def process_single_image(
     output_dir = Path(output_dir)
 
     validate_args(input_image, output_dir, quiet)
-    image_frames = fg.gen_opener(input_image)
+    # Making the generator peekable allows us to get the first item for metadata without advancing
+    # the iterator. Looking at the implementation, this shouldn't cost us any extra
+    # memory/performance
+    image_frames = peekable(fg.gen_opener(input_image))
+    
+    use_fft = bool(strtobool(config("image_processing", "use_fft")))
+    if use_fft:
+        frame = image_frames.peek()
+        blurrer = _get_blurrer(frame)
+        detector_function = partial(glf.GranuleDetectorFFT, blurrer=blurrer)
+    else:
+        detector_function = gl.GranuleDetector
 
     fourier_frames = []
-    granule_ids = None
-    positions = None
     max_distance = float(config("image_processing", "tracking_threshold"))
     granule_tracker = be._GranuleLinker(memory=10,max_distance=max_distance)
 
@@ -272,11 +286,17 @@ def process_single_image(
             process_bar.reset(total_frames)
 
         if bool(strtobool(config("image_processing", "granule_images"))):
-            plot = frame_num % 100 == 0
+            plot_frame = frame_num % 100 == 0
         else:
-            plot = 0
+            plot_frame = False
 
-        detector = gl.GranuleDetector(frame)
+        # I've found the individual plotting of granule boundaries to be much less helpful than the
+        # frame overview (and take much more space), so splitting the varibles here. For now this
+        # just behaves as an easy place to override this, but could be moved out to the config
+        # later.
+        plot_granules = plot_frame
+
+        detector = detector_function(frame)
 
         # Detect the granules within the frame
         try:
@@ -290,16 +310,41 @@ def process_single_image(
             else:
                 continue
 
-        # Show the heatmap of the image
-        if plot:
+        figure_dir = output_dir / "tracking"
+        figure_dir.mkdir(exist_ok=True)
+        detection_dir = figure_dir / "detection"
+        detection_dir.mkdir(exist_ok=True)
+
+        outline_dir = figure_dir / "outline"
+        outline_dir.mkdir(exist_ok=True)
+
+        # Show the detected granules in the image
+        if plot_frame:
+            cmap = plt.get_cmap("tab20")
+            cmap.set_bad((0, 0, 0, 0))
             fig, axs = pt.create_axes(2)
-            detector.plot(axs[0])
-            axs[1].imshow(frame.im_data)
+
+            masked_granules = np.ma.masked_equal(detector.labelled_granules, 0)
+            # masked_granules = detector.labelled_granules
+            axs[0].imshow(masked_granules, cmap=cmap, interpolation="none")
+            axs[1].imshow(frame.im_data, cmap="inferno", )
+
+            axis_len = max(frame.im_data.shape)
+            tick_spacing = 256 if axis_len > 2000 else 128
+
+            titles = ["Detected", "Original"]
+
+            for ax, title in zip(axs, titles):
+                ax.set_title(title)
+                ticks = np.arange(0, axis_len+1, step=tick_spacing)
+                ax.set_xticks(ticks)
+                ax.set_yticks(ticks)
+
             plot_save_name = (
-                output_dir
-                / f"tracking/detection/{input_image.stem}--F{frame_num:03d}.png"
+                detection_dir
+                / f"{input_image.stem}--F{frame_num:03d}.png"
             )
-            pt.save_figure_and_trim(plot_save_name, dpi=110)
+            pt.save_figure_and_trim(plot_save_name, dpi=330)
 
         # Get the approximate boundary for each granule
         # skip frame if there are no granules
@@ -313,10 +358,9 @@ def process_single_image(
 
         # Tidy these Fourier terms per frame
         # This is an iterative function that reuses results from the previous frames.
-        
         try:
             aggregate_terms = be.collect_fourier_terms(
-                granule_boundries, frame, granule_tracker, plot, output_dir
+                granule_boundries, frame, granule_tracker, plot_granules, output_dir
             )
             fourier_frames.append(aggregate_terms)
         except gl.GranuleNotFoundError:
@@ -397,7 +441,7 @@ def write_hdf(save_path: Path, fourier_frames: pd.DataFrame, frame_data):
                 config_yaml, _ = config._aggregate_all()
                 fourier_hdf.attrs["config"] = config_yaml
                 fourier_hdf.attrs["version"] = version.__version__
-        except:
+        except Exception:
             config_yaml, config_summary = config._aggregate_all()
             file = open(f'{str(save_path)[:-3]}.pkl', 'wb')
             pkl.dump({'fourier': fourier_frames, "frame_data": frame_data, "configuration": config_yaml, "version": version.__version__}, file=file)
@@ -415,6 +459,42 @@ def write_hdf(save_path: Path, fourier_frames: pd.DataFrame, frame_data):
             config_yaml, _ = config._aggregate_all()
             fourier_hdf.attrs["config"] = config_yaml
             fourier_hdf.attrs["version"] = version.__version__
+
+def _get_blurrer(frame) -> glf.DeltaBlurrer:
+    """Precomputes the kernels required for the FFT deconvolution."""
+    plane_shape = frame.im_data.shape
+
+    min_size = float(config("image_processing", "granule_minimum_radius"))
+    max_size = float(config("image_processing", "granule_maximum_radius"))
+
+    pixel_size = frame.pixel_size
+    min_sigma = gl._convertToSigma(min_size, pixel_size)
+    max_sigma = gl._convertToSigma(max_size, pixel_size)
+    sigmas = glf.generate_sigmas(min_sigma, max_sigma)
+
+    # In theory, there is some performance penalty for running at size (k * 2**N), where k is
+    # a small prime, compared to a pure power of two, but the increase in required size means
+    # that the small prime case has been faster in all cases I've tested. 
+    allow_power_of_three = True
+    allow_power_of_five = True
+
+    # Keeping the FFT same size as the image can give siginificant speedups, but at the cost of
+    # significant errors around the edges. ENABLE AT YOUR OWN RISK.
+    trim_fft = False
+    if trim_fft:
+        fft_len = max(plane_shape)
+    else:
+        fft_len = None
+
+    blurrer = glf.DeltaBlurrer(
+        sigmas=sigmas,
+        plane_shape = plane_shape,
+        fft_len = fft_len,
+        _allow_power_of_five=allow_power_of_five,
+        _allow_power_of_three=allow_power_of_three,
+    )
+    return blurrer
+
 
 if __name__ == "__main__":
     args = parse_arguments()
