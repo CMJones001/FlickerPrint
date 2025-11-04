@@ -267,27 +267,17 @@ class DeltaBlurrer(_Blurrer):
     """
 
     def calculate_kernels(self):
-        def create_padded_kernel(sigma_one: float, sigma_two: float):
 
-            kernel_one = gaussian_kernel_2d(self.base_kernel_size, sigma_one)
-            padded_kernel_one = np.zeros((self.fft_size, self.fft_size))
-            padded_kernel_one[: self.base_kernel_size, : self.base_kernel_size] = (
-                kernel_one
-            )
+        def create_padded_kernel(sigma: float) -> np.ndarray:
+            kernel = gaussian_kernel_2d(self.base_kernel_size, sigma)
+            padded_kernel = np.zeros((self.fft_size, self.fft_size))
+            padded_kernel[: self.base_kernel_size, : self.base_kernel_size] = kernel
 
-            kernel_two = gaussian_kernel_2d(self.base_kernel_size, sigma_two)
-            padded_kernel_two = np.zeros((self.fft_size, self.fft_size))
-            padded_kernel_two[: self.base_kernel_size, : self.base_kernel_size] = (
-                kernel_two
-            )
+            return padded_kernel
 
-            fft_kernel = rfft2(padded_kernel_one - padded_kernel_two)
-
-            return fft_kernel
-
+        padded_kernels = (create_padded_kernel(s) for s in self.sigmas)
         return [
-            create_padded_kernel(sigma_one, sigma_two)
-            for sigma_one, sigma_two in itertools.pairwise(self.sigmas)
+            rfft2(k_one - k_two) for k_one, k_two in itertools.pairwise(padded_kernels)
         ]
 
     def difference_of_guassians(
