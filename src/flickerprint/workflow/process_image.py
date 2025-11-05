@@ -290,6 +290,14 @@ def process_single_image(
 
         if bool(strtobool(config("image_processing", "granule_images"))):
             plot_frame = frame_num % 100 == 0
+
+            figure_dir = output_dir / "tracking"
+            figure_dir.mkdir(exist_ok=True)
+            detection_dir = figure_dir / "detection"
+            detection_dir.mkdir(exist_ok=True)
+
+            outline_dir = figure_dir / "outline"
+            outline_dir.mkdir(exist_ok=True)
         else:
             plot_frame = False
 
@@ -315,13 +323,6 @@ def process_single_image(
             else:
                 continue
 
-        figure_dir = output_dir / "tracking"
-        figure_dir.mkdir(exist_ok=True)
-        detection_dir = figure_dir / "detection"
-        detection_dir.mkdir(exist_ok=True)
-
-        outline_dir = figure_dir / "outline"
-        outline_dir.mkdir(exist_ok=True)
 
         # Show the detected granules in the image
         if plot_frame:
@@ -379,11 +380,12 @@ def process_single_image(
     fourier_frames_pd = pd.concat(fourier_frames, ignore_index=True)
     # fourier_table = consolidate_fourier_terms(fourier_frames_pd)
 
-    # Save a .csv file for debugging
-    save_name = f"fourier/{input_image.stem}"
+    fourier_dir = output_dir / "fourier"
+    fourier_dir.mkdir(exist_ok=True)
+    save_name = input_image.stem
     if max_frame is not None:
         save_name += "--DEBUG"
-    save_path = output_dir / (save_name + ".h5")
+    save_path = fourier_dir / f"{save_name}.h5"
 
     # Save a HDF5 file for better long-term storage with metadata
     frame_data = {
