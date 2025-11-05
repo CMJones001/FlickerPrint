@@ -328,7 +328,7 @@ class DeltaBlurrer(_Blurrer):
         # This mostly follows as in skimage.feature.blob
         #
         if len(local_maxima) == 0:
-            return
+            return []
 
         # The local maxima function gives the last column as the plane with the maxima
         # point, as this is the sigma dimension, we then convert this index into a sigma
