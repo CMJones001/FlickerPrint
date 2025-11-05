@@ -59,6 +59,7 @@ import warnings
 import multiprocessing as mp
 from time import sleep
 from more_itertools import peekable
+from skimage import exposure
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -279,6 +280,8 @@ def process_single_image(
     disable_bar = True if quiet else None
     process_bar = tqdm.tqdm(enumerate(image_frames), disable=disable_bar, position=_pbar_pos, unit="frame", desc=f"#{_pbar_pos+1}")
 
+    gamma = float(config("image_processing", "gamma_adjust"))
+
     for frame_num, frame in process_bar:
         # Update the progress bar to account for the number of frames
         if frame_num == 0 and not quiet:
@@ -296,6 +299,8 @@ def process_single_image(
         # later.
         plot_granules = plot_frame
 
+        if gamma is not None and gamma > 0.0:
+            frame.enhanced_image = exposure.adjust_gamma(frame.im_data, 1.0 / gamma)
         detector = detector_function(frame)
 
         # Detect the granules within the frame
