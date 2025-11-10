@@ -431,25 +431,6 @@ To do this, open the terminal and type:</p>
 <div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>xcode-select<span class="w"> </span>--install
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are using an Apple Silicon Mac (likely any Mac made after 2020), you may also need to manually install the h5py python library using a compatable version of HDF5.
-At the time of writing, the version of HDF5 which ships with h5py does not support Apple Silicon.
-This module is used to read and write the data files produced during the analysis.</p>
-<p>To do so, first install <a class="reference external" href="https://brew.sh">homebrew</a> if you do not have it already:</p>
-<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-<span class="nb">echo</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/Users/dev/.zprofile
-<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/Users/dev/.zprofile
-<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>/opt/homebrew/bin/brew<span class="w"> </span>shellenv<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<p>Then use it to install HDF5 and h5py:</p>
-<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>hdf5
-<span class="nb">export</span><span class="w"> </span><span class="nv">HDF5_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>brew<span class="w"> </span>--prefix<span class="w"> </span>hdf5<span class="k">)</span><span class="s2">&quot;</span>
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-binary<span class="o">=</span>h5py<span class="w"> </span>h5py
-</pre></div>
-</div>
-</div>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-2">
@@ -460,51 +441,79 @@ Linux</label><div class="sd-tab-content docutils">
 </section>
 <section id="installation-via-pip">
 <h2>Installation via pip<a class="headerlink" href="#installation-via-pip" title="Link to this heading">#</a></h2>
-<p>To install FlickerPrint, download the source code from <a class="reference external" href="https://github.com/FlickerPrint/FlickerPrint">GitHub</a>.
-Open the terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">FlickerPrint/src</span></code> directory.
-Then install it using pip:</p>
+<p>FlickerPrint can be installed directly using pip:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-3">
 Windows</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>flickerprint
 </pre></div>
 </div>
 </div>
 <input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-4">
 macOS</label><div class="sd-tab-content docutils">
-<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>flickerprint
 </pre></div>
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-5">
 Linux</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>flickerprint
 </pre></div>
 </div>
 </div>
 </div>
-<p>Please note that FlickerPrint is not yet available on the Python Package Index (PyPI).
-This will be available shortly.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> and <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variables must be set correctly so that the Java installation can be found by the Python modules that require it.
 FlickerPrint will attempt to set these automatically on installation, though you can also set them manually using the instructions below.</p>
 </div>
 </section>
-<section id="setting-environment-variables">
-<h2>Setting Environment Variables<a class="headerlink" href="#setting-environment-variables" title="Link to this heading">#</a></h2>
+<section id="building-from-source">
+<h2>Building from Source<a class="headerlink" href="#building-from-source" title="Link to this heading">#</a></h2>
+<p>To install FlickerPrint from source, download the source code from <a class="reference external" href="https://github.com/FlickerPrint/FlickerPrint">GitHub</a>.
+Open the terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">FlickerPrint/src</span></code> directory.
+Then install it using pip:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-2" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-6">
 Windows</label><div class="sd-tab-content docutils">
-<p>When Java is installed on Windows, the <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> environment variable is set automatically.
-However, if you need to set enviroment vairables manually, you can find instructions for doing so <a class="reference external" href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1">here</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-2" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-7">
+macOS</label><div class="sd-tab-content docutils">
+<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-8" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
+Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-environment-variables">
+<h2>Setting Environment Variables<a class="headerlink" href="#setting-environment-variables" title="Link to this heading">#</a></h2>
+<p>As part of the installation process, FlickerPrint will attempt to set the <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> and <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variables automatically.
+If this fails, you may need to set them manually.
+Instructions are provided below for each operating system.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-9">
+Windows</label><div class="sd-tab-content docutils">
+<p>When Java is installed on Windows, the <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> environment variable is set automatically.
+However, if you need to set enviroment vairables manually, you can find instructions for doing so <a class="reference external" href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/set_1">here</a>.</p>
+</div>
+<input id="sd-tab-item-10" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-10">
 macOS</label><div class="sd-tab-content docutils">
 <p>You will need to set the <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> environement variable and add it to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.
 To do this open the terminal and type (changing <code class="docutils literal notranslate"><span class="pre">&lt;pathToJava/home&gt;</span></code> to the location of your Java installation):</p>
@@ -520,8 +529,8 @@ To do so, open the appropriate config file for your system:</p>
 </div>
 <p>Then add the above two lines to the file, save it and relaunch the terminal.</p>
 </div>
-<input id="sd-tab-item-8" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-8">
+<input id="sd-tab-item-11" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-11">
 Linux</label><div class="sd-tab-content docutils">
 <p>You will need to set the <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> environement variable and add it to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.
 To do this open the terminal and type (changing <code class="docutils literal notranslate"><span class="pre">&lt;pathToJava/home&gt;</span></code> to the location of your Java installation):</p>
@@ -604,6 +613,7 @@ Then run the following command:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-specific-prerequisites">System-Specific Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-via-pip">Installation via pip</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-from-source">Building from Source</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-environment-variables">Setting Environment Variables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-with-docker">Installation with Docker</a></li>
 </ul>

@@ -36,7 +36,7 @@ Quick Install
 =============
 
 See :ref:`installation` for details of the prerequesites for the package.
-Download the source code from `GitHub <https://github.com/FlickerPrint/FlickerPrint>`_, navigate to the ``FlickerPrint/src`` folder and install using pip:
+FlickerPrint can be installed using pip:
 
 .. tab-set::
 
@@ -44,14 +44,14 @@ Download the source code from `GitHub <https://github.com/FlickerPrint/FlickerPr
 
       .. code-block:: bash
 
-         python -m pip install .
+         python -m pip install flickerprint
 
    
    .. tab-item:: macOS and Linux
 
       .. code-block:: bash
 
-         python3 -m pip install .
+         python3 -m pip install flickerprint
 
 
 Recording Images
