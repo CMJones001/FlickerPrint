@@ -159,14 +159,18 @@ def _getType(im_path: Path):
     elif extentions[-1] in [".tiff", ".tif"]:
         return GeneratorTypes.BIOFORMATS
     else:
-        raise ValueError(f"Unable to determine class of image - {im_path}")
+        return GeneratorTypes.BIOFORMATS
 
 
 def bioformatsGen(im_path):
     """ Load an image from a bioformats file. """
     # Get some metadata from the OMEXML data
-    md = bf.get_omexml_metadata(str(im_path))
-    o = bf.OMEXML(md)
+    try:
+        md = bf.get_omexml_metadata(str(im_path))
+        o = bf.OMEXML(md)
+    except Exception:
+        closeVM()
+        raise ValueError(f"\n\n\nCould not open image file {str(im_path)} with bioformats: unsupported or corrupted file.\n\n")
     # Extract the relevant terms
     pixelData = o.image().Pixels
     pixel_size = pixelData.PhysicalSizeX #in microns

@@ -75,7 +75,7 @@ def parse_arguments():
     parser.add_argument(
         "-o",
         "--output",
-        type=Path | str,
+        type=Path,
         default=".",
         help="Directory for the output files.",
     )
@@ -100,21 +100,21 @@ def parse_arguments():
     return args
 
 def main(
-        input_image: Path | str = None, output_dir: Path | str = ".", quiet: bool = False, max_frame: int = None, cores = 1
+        input_image: Path = None, output_dir: Path = ".", quiet: bool = False, max_frame: int = None, cores = 1
 ):
     """
     Takes an image or a directory of images and processes them to extract the granule boundaries and Fourier terms.
     These are retruned as a .h5 file in the experiment's 'fourier' directory.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
 
-    input_image: Path | str 
+    input_image: Path  
         The path to the image or directory of images to be processed. If a directory is provided, all images in the directory will be processed.
         If 'default_images' is provided, the default images in the 'images' directory will be processed.
         If no input is provided, the default image directory set in the config file will be used.
     
-    output_dir: Path | str
+    output_dir: Path
         The directory to save the output files to. If no output directory is provided, the current directory will be used.
 
     quiet: bool
@@ -190,7 +190,7 @@ def main(
             args = []
             for pbar_bos, file in enumerate(files):
                     args.append((Path(file), Path(output_dir), quiet, max_frame, pbar_bos))
-            pool.starmap(process_single_image, args)
+            pool.starmap(single_image_worker, args)
             
     else:
         # If there is only one image, then just process it directly.
@@ -216,6 +216,14 @@ def main(
             print("Zipping detection and outline images unsuccessful. Images will be available as separate files instead.")
     print(f"\n\nFourier analysis complete\n-------------------------\n")
 
+
+def single_image_worker(*args):
+    """A simple wrapper to catch exceptions in a single multiprocessing thread so that the other processes can continue."""
+    try:
+        process_single_image(*args)
+    except Exception as e:
+        print(e)
+
 @fg.vmManager
 def process_single_image(
     input_image: Path, output_dir: Path, quiet: bool = False, max_frame: int = None, _pbar_pos: int = 0
@@ -223,8 +231,8 @@ def process_single_image(
     """
     Locates the granules in a single image and extracts the Fourier terms. The Fourier terms are written to a .h5 file in the 'fourier' directory.
     
-    Parameters:
-    -----------
+    Parameters
+    ----------
     
     input_image: Path
         The path to the image to be processed.
@@ -250,7 +258,11 @@ def process_single_image(
     output_dir = Path(output_dir)
 
     validate_args(input_image, output_dir, quiet)
-    image_frames = fg.gen_opener(input_image)
+    try:
+        image_frames = fg.gen_opener(input_image)
+    except Exception: 
+        print(f"\n\nCould not open image file {input_image} with bioformats: unsupported or corrupted file.\n")
+        return None
 
     fourier_frames = []
     granule_ids = None
