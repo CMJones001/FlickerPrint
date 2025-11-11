@@ -14,13 +14,10 @@ RUN apt update && \
 ENV JAVA_HOME=/usr/lib/jvm/default-java
 ENV PATH="$JAVA_HOME/bin:$PATH"
 
-# Then install your package
 WORKDIR /app
-RUN mkdir /app/FlickerPrint
-COPY . /app/FlickerPrint
 
-RUN cd /app/FlickerPrint/src && \
-    python3 -m pip install . && \
+# Install FlickerPrint
+RUN python3 -m pip install flickerprint && \
     cd /app
 
 CMD ["bash"]

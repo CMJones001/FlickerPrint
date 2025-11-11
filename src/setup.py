@@ -269,10 +269,15 @@ if not check_requirements():
     print(f"##############################################################\n\n")
     exit(1)
 
+with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
+        lines = f.readlines()
+        description_content = "".join(lines)
+
 setup(name='flickerprint',
-      version=0.3,
+      version='1.0',
       author='Carl Jones, Jack Law, Thomas Williamson, Fynn Wolf, Endre Tønnessen',
       maintainer='Thomas Williamson',
+      description='FlickerPrint: Non-invasive measurement of biomolecular condensate mechanical properties from confocal microscopy images.',
       python_requires=">=3.9, <3.12",
       install_requires=["numpy",
                         "python-javabridge>=4.0.4",
@@ -300,4 +305,10 @@ setup(name='flickerprint',
         ]},
       package_data={"flickerprint": ["common/defaults.yaml"]},
       include_package_data=True,
+      long_description=description_content,
+      long_description_content_type='text/markdown',
+      project_urls={
+          'Documentation': 'https://flickerprint.github.io/FlickerPrint/',
+          'Source': 'https://github.com/FlickerPrint/FlickerPrint'
+      }
       )
