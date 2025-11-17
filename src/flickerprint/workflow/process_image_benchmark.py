@@ -5,6 +5,7 @@ Benchmarkable version of the ``process_image.py`` script.
 This is a single core version for simplicity.
 """
 
+import argparse
 import multiprocessing as mp
 from dataclasses import dataclass
 from functools import partial
@@ -12,7 +13,6 @@ from itertools import chain, islice, product
 from pathlib import Path
 from time import perf_counter
 from typing import Optional
-import argparse
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -320,10 +320,26 @@ class SaveDirs:
         self.detection_dir.mkdir(exist_ok=True)
         self.fourier_dir.mkdir(exist_ok=True)
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description="")
 
-    parser.add_argument("--input", type=Path, help="Path to input image or directory of input images.", default=None)
+    def optional_path(input) -> Optional[Path]:
+        """The `type` argument is called to convert the arg into the desired type.
+
+        ``Path`` would work well normally, but breaks on None, so we just pass that on.
+        """
+        if input is None:
+            return None
+        return Path("input")
+
+    parser.add_argument(
+        "-i",
+        "--input",
+        type=optional_path,
+        help="Path to input image or directory of input images.",
+        default=None,
+    )
     parser.add_argument(
         "-o",
         "--output",
@@ -343,19 +359,22 @@ def parse_args():
     )
 
     parser.add_argument(
-        "-c","--cores",
+        "-c",
+        "--cores",
         type=int,
         default=1,
-        help="Number of cores to use for multiprocessing. Default is 1. Not required for single files.")
+        help="Number of cores to use for multiprocessing. Default is 1. Not required for single files.",
+    )
 
     args = parser.parse_args()
     return args
 
 
-
-
 if __name__ == "__main__":
-    benchmark_path = Path(
-        "/home/carl/scratch/postdoc/granule_explorer_project/benchmarks/nikon/out"
+    args = parse_args()
+    main(
+        input_path=args.input,
+        output_dir=args.output,
+        max_frame=args.max_frame,
+        n_cores=args.cores,
     )
-    main(input_path=None, output_dir=benchmark_path, max_frame=10, n_cores=1)
