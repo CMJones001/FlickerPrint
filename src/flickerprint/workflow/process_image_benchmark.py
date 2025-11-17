@@ -1,8 +1,9 @@
-"""
-Benchmarkable version of the ``process_image.py`` script.
+"""Benchmarkable version of the ``process_image.py`` script.
 =========================================================
 
-This is a single core version for simplicity.
+This runs both the FFT and base version and for the given images and creates a table of the time
+taken along with the numpy version. This works mostly in the same way as the ``process_image`` file.
+
 """
 
 import argparse
