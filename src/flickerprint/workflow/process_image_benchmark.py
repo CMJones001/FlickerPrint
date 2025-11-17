@@ -12,6 +12,7 @@ from itertools import chain, islice, product
 from pathlib import Path
 from time import perf_counter
 from typing import Optional
+import argparse
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -40,42 +41,75 @@ def main(
 
     image_paths = parse_input_images(input_path, output_dir)
 
-    # We need to use multiprocessing even if we're running with only one core due to the javabridge,
-    # we need to start the runs as seperate processes.
+    if n_cores != 1:
+        # This should work just as well when running with one core, but there's some madness going on
+        process_single_image = partial(
+            image_wrapper,
+            output_dir=output_dir,
+            max_frame=max_frame,
+        )
 
-    process_single_image = partial(
-        image_wrapper,
-        output_dir=output_dir,
-        max_frame=max_frame,
-    )
+        args = [
+            (im_path, fft, pos)
+            for pos, (im_path, fft) in enumerate(product(image_paths, [True, False]))
+        ]
+        with mp.Pool(processes=n_cores, maxtasksperchild=1) as pool:
+            results = pool.starmap(process_single_image, args)
 
-    # args = [(im_path, fft) for im_path, fft in product(image_paths, [True, False])]
+        results_df = pd.DataFrame(results)
+    else:
+        results_df = run_serial(image_paths, output_dir, max_frame)
 
-    # Works with either True or False hardcoded
-    # args = [(im_path, False) for im_path in image_paths]
-
-    # Work's if only True xor False are passed!?!?
-    # Even if they're __ignored__
-    _args = []
-    for im_path in image_paths:
-        _args.append((im_path, True))
-        _args.append((im_path, False))
-
-    with mp.Pool(processes=n_cores, maxtasksperchild=1) as pool:
-        results = pool.map(process_single_image, _args)
-
-    breakpoint()
-    results_df = pd.DataFrame(results)
     print(results_df)
     results_df.to_csv("/tmp/results-out.csv")
 
+
 @fg.vmManager
-def image_wrapper(ahhhhhhhh, output_dir: Path, max_frame: Optional[int]):
-    """Deal with multiprocessing weirdness and unpack the args before passing it on."""
-    # TODO: Slightly insane debugging
-    image_path, _use_fft_override = ahhhhhhhh
-    use_fft_override = False
-    return process_image(image_path=image_path, output_dir=output_dir, max_frame=max_frame, use_fft_override=use_fft_override)
+def run_serial(image_paths: Path, output_dir: Path, max_frame: Optional[int]):
+    results = []
+    for im_path, fft in product(image_paths, [True, False]):
+        result_part = process_image(
+            image_path=im_path,
+            output_dir=output_dir,
+            max_frame=max_frame,
+            use_fft_override=fft,
+        )
+        results.append(result_part)
+
+    results_df = pd.DataFrame(results)
+    return results_df
+
+
+@fg.vmManager
+def image_wrapper(image_path, fft, bar_pos, output_dir: Path, max_frame: Optional[int]):
+    """Deal with multiprocessing weirdness and unpack the args before passing it on.
+
+    This also means that we can have a seperate ``vmManager`` entry point from the serial version.
+
+    I have no earthly idea what is going on when this is run with one core enabled. There is an
+    error that the VM cannot be started.
+
+    ```
+    _args = []
+    for im_path in image_paths:
+        _args.append((im_path, True, output_dir, max_frame))
+        _args.append((im_path, False, output_dir, max_frame))
+    ```
+
+    works _if and only if_ one of the append lines is commented out. This error persists even if
+    this wrapper ignores the arguments and just `sleeps`. It persists when using the `pool.map`
+    version and they're a tuple. It persists when I replace True/False with `a`/`b`. It persists
+    with or without using ``partial``. But remove one of the lines and it's fine...
+
+    """
+    return process_image(
+        image_path=image_path,
+        output_dir=output_dir,
+        max_frame=max_frame,
+        use_fft_override=fft,
+        _bar_pos=bar_pos,
+    )
+
 
 def process_image(
     image_path: Path,
@@ -83,6 +117,7 @@ def process_image(
     max_frame: Optional[int] = None,
     *,
     use_fft_override: Optional[bool] = None,
+    _bar_pos: Optional[int] = None,
 ):
     start_time = perf_counter()
     config_path = output_dir / "config.yaml"
@@ -108,8 +143,18 @@ def process_image(
     else:
         total_frames = n_frames
 
+    if _bar_pos is not None:
+        description = f"#{_bar_pos+1}"
+    else:
+        description = None
+
     process_bar = tqdm(
-        enumerate(image_frames), unit="frame", total=total_frames, disable=False
+        enumerate(image_frames),
+        unit="frame",
+        total=total_frames,
+        disable=False,
+        position=_bar_pos,
+        desc=description,
     )
 
     label = "_fft" if use_fft_override else "_base"
@@ -178,9 +223,10 @@ def process_image(
     props = {
         "duration_total": duration,
         "n_frames": total_frames,
-        "duration_frame": duration/total_frames,
+        "duration_frame": duration / total_frames,
         "fft": use_fft_override,
         "base_name": image_path.stem,
+        "version_np": np.__version__,
     }
 
     return props
@@ -274,9 +320,42 @@ class SaveDirs:
         self.detection_dir.mkdir(exist_ok=True)
         self.fourier_dir.mkdir(exist_ok=True)
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="")
+
+    parser.add_argument("--input", type=Path, help="Path to input image or directory of input images.", default=None)
+    parser.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=".",
+        help="Directory for the output files.",
+    )
+    parser.add_argument(
+        "-q", "--quiet", action="store_true", help="Supress progress bar."
+    )
+
+    parser.add_argument(
+        "--max-frame",
+        type=int,
+        default=None,
+        help="Stop the analysis on this frame. Used for debugging.",
+    )
+
+    parser.add_argument(
+        "-c","--cores",
+        type=int,
+        default=1,
+        help="Number of cores to use for multiprocessing. Default is 1. Not required for single files.")
+
+    args = parser.parse_args()
+    return args
+
+
+
 
 if __name__ == "__main__":
     benchmark_path = Path(
         "/home/carl/scratch/postdoc/granule_explorer_project/benchmarks/nikon/out"
     )
-    main(input_path=None, output_dir=benchmark_path, max_frame=10)
+    main(input_path=None, output_dir=benchmark_path, max_frame=10, n_cores=1)
