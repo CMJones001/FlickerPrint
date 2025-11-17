@@ -57,11 +57,14 @@ def main(
             results = pool.starmap(process_single_image, args)
 
         results_df = pd.DataFrame(results)
+
+        # Flushing here should ensure we don't get any artifacts as the bars redraw
+        print("\n\n", flush=True)
     else:
         results_df = run_serial(image_paths, output_dir, max_frame)
 
     print(results_df)
-    results_df.to_csv("/tmp/results-out.csv")
+    results_df.to_csv(output_dir / "benchmarking.csv")
 
 
 @fg.vmManager
@@ -281,6 +284,7 @@ def parse_input_images(input_path: Optional[Path], output_dir: Path) -> list[Pat
 
     # We're left with directories, so scan for these for files
     image_regexes = [str(config("workflow", "image_regex"))]
+    # TODO: Can add the other regexes here
     file_paths = list(
         chain.from_iterable((input_path.glob(regex) for regex in image_regexes))
     )
